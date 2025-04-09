@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container-fluid layout">
+        <div class="row h-100 d-flex">
+            <aside class="col-12 col-md-2 layout__sidebar">
+                <!-- Sidebar content -->
+                <div class="row">
+                    <img src="asset/logo.png" alt="Logo" class="img-fluid sidebar__logo">
+                </div>
+                <div class="row">
+                    <div class="sidebar__box">
+                        <p>You can create your first playlist</p>
+                        <button>Create Playlist</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="sidebar__box">
+                        <p>You can hear music with your friends</p>
+                        <button>Add Friends</button>
+                    </div>
+                </div>
+            </aside>
+            <main class="col-12 col-md-10 layout__main">
+                <!-- Main content -->
+                <header class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 w-100">
+                    <div class="search-container">
+                        <input type="text" class="form-control search-input" placeholder="Search">
+                        <img src="asset/search.png" class="search-icon" alt="Search icon">
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-auth btn-signup">Sign Up</button>         
+                        <button class="btn btn-auth btn-signin">Sign In</button>               
+                    </div>
+                </header>
+                
+                <!-- Trending Section -->
+                <section class="section trend-section mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h2 class="section-title">Trending</h2>
+                        <button class="btn btn-link p-0">Show all</button>
+                    </div>
+                    <div class="media-scroll d-flex gap-3">
+                        <!-- Repeat 10 times -->
+                        <!-- Use backend or JS loop in practice -->
+                        <div class="media-card text-center">
+                            <div class="media-img rounded">
+                                <img src="asset/cover.png" alt="Trending Cover" class="img-fluid object-fit-cover">
+                            </div>
+                            <p class="media-title mb-0 mt-2">Song Title</p>
+                            <p class="media-subtitle text-muted mb-0">Artist Name</p>
+                        </div>
+                        <div class="media-card text-center">
+                            <div class="media-img rounded">
+                                <img src="asset/cover.png" alt="Trending Cover" class="img-fluid object-fit-cover">
+                            </div>
+                            <p class="media-title mb-0 mt-2">Song Title</p>
+                            <p class="media-subtitle text-muted mb-0">Artist Name</p>
+                        </div>
+                        
+                        <!-- x10 -->
+                    </div>
+                </section>
+
+                <!-- Artist Section -->
+                <section class="section artist-section mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h2 class="section-title">Artists</h2>
+                        <button class="btn btn-link p-0">Show all</button>
+                    </div>
+                    <div class="media-scroll d-flex gap-3">
+                        <!-- Repeat 10 times -->
+                        <div class="media-card text-center">
+                            <div class="media-img rounded-circle">
+                                <img src="asset/artist.png" alt="Artist" class="img-fluid object-fit-cover">
+                            </div>
+                            <p class="media-title mb-0 mt-2">Artist Name</p>
+                            <p class="media-subtitle text-muted mb-0">Artist</p>
+                        </div>
+                        <div class="media-card text-center">
+                            <div class="media-img rounded-circle">
+                                <img src="asset/artist.png" alt="Artist" class="img-fluid object-fit-cover">
+                            </div>
+                            <p class="media-title mb-0 mt-2">Artist Name</p>
+                            <p class="media-subtitle text-muted mb-0">Artist</p>
+                        </div>
+                        
+                        
+                        <!-- x10 -->
+                    </div>
+                </section>
+
+                <!-- Album Section -->
+                <section class="section album-section mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h2 class="section-title">Albums</h2>
+                        <button class="btn btn-link p-0">Show all</button>
+                    </div>
+                    <div class="media-scroll d-flex gap-3">
+                        <!-- Repeat 10 times -->
+                        <div class="media-card text-center">
+                            <div class="media-img rounded">
+                                <img src="asset/album.png" alt="Album" class="img-fluid object-fit-cover">
+                            </div>
+                            <p class="media-title mb-0 mt-2">Album Title</p>
+                            <p class="media-subtitle text-muted mb-0">Artist</p>
+                        </div>
+                        <div class="media-card text-center">
+                            <div class="media-img rounded">
+                                <img src="asset/album.png" alt="Album" class="img-fluid object-fit-cover">
+                            </div>
+                            <p class="media-title mb-0 mt-2">Album Title</p>
+                            <p class="media-subtitle text-muted mb-0">Artist</p>
+                        </div>
+                        
+                        
+                        <!-- x10 -->
+                    </div>
+                </section>
+
+                
+            </main>
+        </div>
+    </div>
+    
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</body>
+</html>

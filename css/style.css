@@ -1,0 +1,210 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.row {
+    flex-grow: 1;
+    height: 100%;
+}
+
+
+.layout {
+    background-color: #E4E5EE;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.layout__sidebar {
+    background-color: #E4E5EE;
+    padding: 0 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden; 
+}
+
+
+.layout__main {
+    background-color: #F0F0F5;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    height: calc(100vh - 2rem); 
+    overflow-y: auto;
+    scrollbar-width: none;
+
+}
+
+.layout__main::-webkit-scrollbar {
+    display: none;
+}
+
+.layout__main header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #F0F0F5;
+    padding: 1rem;
+    
+}
+
+
+
+
+.sidebar__logo{
+    max-width: 190px;
+    max-height: 190px;
+    margin: 0 auto;
+}
+
+.sidebar__box {
+    width: 100%;
+    background-color: #F0F0F5;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;      
+    justify-content: center;  
+    text-align: center;     
+}
+
+
+
+button {
+    background-color: #C6B3EC;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: #34364C;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #b39bdf;
+}
+
+.btn-auth, .btn-create {
+    background-color: #C6B3EC;
+    color: #34364C;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s ease;
+    font-weight: bold;
+}
+
+.btn-auth:hover, .btn-create:hover {
+    background-color: #b39bdf;
+}
+
+.btn-signup {
+    background-color: transparent;
+}
+
+.btn-signup:hover {
+    background-color: #e1d5f9;
+}
+
+.search-container {
+    position: relative;
+    width: clamp(200px, 25vw, 300px);
+}
+
+.search-input {
+    padding-left: 2.5rem !important;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: auto;
+    pointer-events: none;
+}
+
+.section {
+    padding: 1rem 0;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.media-card {
+    width: 128px;
+}
+
+.media-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #D9D9D9;
+    overflow: hidden;
+}
+
+.media-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.media-img.no-image {
+    background-color: #D9D9D9;
+}
+
+.media-img.rounded {
+    border-radius: 0.75rem;
+}
+
+.media-img.rounded-circle {
+    border-radius: 50%;
+}
+
+.media-scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    width: 100%;
+    
+}
+
+.media-scroll .media-card {
+    flex: 0 0 auto; /* Don't grow or shrink */
+    width: 128px;   /* Fixed width */
+}
+
+.btn-link,
+.btn-link:link,
+.btn-link:visited,
+.btn-link:hover,
+.btn-link:focus,
+.btn-link:active {
+    color: #CCCCCC !important;
+    text-decoration: none;
+}
+
+.btn-link:hover,
+.btn-link:focus,
+.btn-link:active {
+    text-decoration: underline;
+}
