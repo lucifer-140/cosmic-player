@@ -326,23 +326,24 @@ ul.list-unstyled li a:hover {
 
 
 .music__player {
-    position: sticky;
-    bottom: 20px;  /* Adjust space between player and bottom */
+    position: fixed;
+    bottom: 20px;
     left: 0;
     width: 100%;
     z-index: 9999;
+    padding: 0 20px; /* Add some padding so it doesn't touch screen edges */
 }
 
 .floating-player {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; /* Stack children vertically */
     background-color: #ffffff;
     color: rgb(0, 0, 0);
     padding: 10px;
-    border-radius: 10px;  /* Rounded bottom corners */
+    border-radius: 10px;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
     max-width: 100%;
+    position: relative;
 }
 
 .player-info {
@@ -398,4 +399,81 @@ ul.list-unstyled li a:hover {
 /* Optional: Add hover effects for the buttons */
 .control-btn:hover .control-icon {
     opacity: 0.8;
+}
+
+.progress-bar-container {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+}
+
+.progress-bar::-webkit-progress-bar {
+    background-color: #e0e0e0;
+}
+
+.progress-bar::-webkit-progress-value {
+    background-color: #8A7EBE;
+}
+
+.progress-bar::-moz-progress-bar {
+    background-color: #8A7EBE;
+}
+
+.player-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 4px; /* Space for progress bar */
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100px; /* Adjust as needed */
+}
+
+.volume-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+    outline: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.volume-control:hover .volume-slider {
+    opacity: 1;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #8A7EBE;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #8A7EBE;
+    border-radius: 50%;
+    cursor: pointer;
 }
