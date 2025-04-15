@@ -1,0 +1,29 @@
+.friends__box {
+    background-color: #F0F0F5;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1rem;
+}
+
+.friends__img img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.friends__play img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.friends__name {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.friends__activity {
+    font-size: 0.8rem;
+}
