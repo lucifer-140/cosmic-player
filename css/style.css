@@ -386,6 +386,7 @@ ul.list-unstyled li a {
 .player-info {
     display: flex;
     align-items: center;
+    min-width: 200px; /* Fixed width for info section */
 }
 
 .song-cover {
@@ -397,7 +398,8 @@ ul.list-unstyled li a {
 }
 
 .song-details {
-    max-width: 200px;
+    min-width: 150px; /* Prevent text wrapping from affecting layout */
+    overflow: hidden;
 }
 
 .song-title {
@@ -416,6 +418,7 @@ ul.list-unstyled li a {
     display: flex;
     align-items: center;
     gap: 15px;
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 .control-btn {
@@ -474,6 +477,7 @@ ul.list-unstyled li a {
     align-items: center;
     width: 100%;
     margin-top: 4px; /* Space for progress bar */
+    min-height: 60px
 }
 
 .volume-control-container {
@@ -565,8 +569,8 @@ ul.list-unstyled li a {
 .song-cover {
     width: 50px;
     height: 50px;
-    border-radius: 5px;
-    overflow: hidden;
+    min-width: 50px; /* Prevent shrinking */
+    margin-right: 10px;
 }
 
 .player-controls button[disabled] {
@@ -586,4 +590,11 @@ ul.list-unstyled li a {
 .song-details .song-artist {
     font-size: 0.8em;
     color: #888;
+}
+
+.song-title, 
+.song-artist {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
