@@ -163,12 +163,16 @@ button:hover {
 
 .media-card {
     width: 200px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 .media-img {
     width: 100%;
     aspect-ratio: 1 / 1;
     background-color: #D9D9D9;
+    overflow: hidden;
+    position: relative;
     overflow: hidden;
 }
 
@@ -188,6 +192,39 @@ button:hover {
 
 .media-img.rounded-circle {
     border-radius: 50%;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.media-img:hover .play-overlay {
+    opacity: 1;
+}
+
+.play-icon {
+    width: 40px;
+    height: 40px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.2s ease;
+}
+
+.play-icon:hover {
+    transform: scale(1.1);
+}
+
+.media-card:hover {
+    transform: translateY(-5px);
 }
 
 .media-scroll {
@@ -510,4 +547,43 @@ ul.list-unstyled li a {
     border: 2px solid white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     cursor: pointer;
+}
+
+/* Add to your CSS file */
+.no-song {
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-song img {
+    width: 60%;
+    opacity: 0.5;
+}
+
+.song-cover {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.player-controls button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.player-controls button[disabled] .control-icon {
+    filter: grayscale(100%);
+}
+
+.song-details .song-title {
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.song-details .song-artist {
+    font-size: 0.8em;
+    color: #888;
 }

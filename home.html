@@ -98,25 +98,43 @@
                             <h2 class="section-title">Trending</h2>
                             <button class="btn btn-link p-0">Show all</button>
                         </div>
+                        <!-- Inside your trending section -->
                         <div class="media-scroll d-flex gap-3">
-                            <!-- Repeat 10 times -->
-                            <!-- Use backend or JS loop in practice -->
-                            <div class="media-card text-center">
+                            <!-- Song 1 -->
+                            <div class="media-card text-center" data-song="Stay Here" data-artist="Joker Xue" data-file="music/Stay Here.m4a">
                                 <div class="media-img rounded">
-                                    <img src="asset/cover.png" alt="Trending Cover" class="img-fluid object-fit-cover">
+                                    <img src="asset/cover.jpg" alt="Trending Cover" class="img-fluid object-fit-cover">
+                                    <div class="play-overlay">
+                                        <img src="asset/play.png" alt="Play" class="play-icon">
+                                    </div>
                                 </div>
-                                <p class="media-title mb-0 mt-2">Song Title</p>
-                                <p class="media-subtitle text-muted mb-0">Artist Name</p>
-                            </div>
-                            <div class="media-card text-center">
-                                <div class="media-img rounded">
-                                    <img src="asset/cover.png" alt="Trending Cover" class="img-fluid object-fit-cover">
-                                </div>
-                                <p class="media-title mb-0 mt-2">Song Title</p>
-                                <p class="media-subtitle text-muted mb-0">Artist Name</p>
+                                <p class="media-title mb-0 mt-2">Stay Here</p>
+                                <p class="media-subtitle text-muted mb-0">Joker Xue</p>
                             </div>
                             
-                            <!-- x10 -->
+                            <!-- Song 2 -->
+                            <div class="media-card text-center" data-song="小孩" data-artist="Joker Xue" data-file="music/小孩.m4a">
+                                <div class="media-img rounded">
+                                    <img src="asset/cover.jpg" alt="Trending Cover" class="img-fluid object-fit-cover">
+                                    <div class="play-overlay">
+                                        <img src="asset/play.png" alt="Play" class="play-icon">
+                                    </div>
+                                </div>
+                                <p class="media-title mb-0 mt-2">小孩</p>
+                                <p class="media-subtitle text-muted mb-0">Joker Xue</p>
+                            </div>
+                            
+                            <!-- Song 3 -->
+                            <div class="media-card text-center" data-song="绅士" data-artist="Joker Xue" data-file="music/绅士.m4a">
+                                <div class="media-img rounded">
+                                    <img src="asset/cover.jpg" alt="Trending Cover" class="img-fluid object-fit-cover">
+                                    <div class="play-overlay">
+                                        <img src="asset/play.png" alt="Play" class="play-icon">
+                                    </div>
+                                </div>
+                                <p class="media-title mb-0 mt-2">绅士</p>
+                                <p class="media-subtitle text-muted mb-0">Joker Xue</p>
+                            </div>
                         </div>
                     </section>
 
@@ -236,37 +254,38 @@
             
             <div class="col-12 col-md-12 music__player">
                 <div class="floating-player">
-                    <!-- Progress Bar Section (now on top) -->
-                    <div class="progress-bar-container">
-                        <progress class="progress-bar" value="30" max="100"></progress>
+                    <!-- Progress Bar - Hide when no song is playing -->
+                    <div class="progress-bar-container" style="display: none;">
+                        <progress class="progress-bar" value="0" max="100"></progress>
                     </div>
                     
                     <div class="player-content">
                         <div class="player-info">
-                            <img src="asset/cover.png" alt="Song Cover" class="song-cover">
+                            <!-- Default state with no cover -->
+                            <div class="song-cover no-song">
+                                <img src="asset/no-cover.png" alt="No song selected" class="img-fluid">
+                            </div>
                             <div class="song-details">
-                                <p class="song-title">Song Title</p>
-                                <p class="song-artist">Artist Name</p>
+                                <p class="song-title">No song selected</p>
+                                <p class="song-artist">Select a song to play</p>
                             </div>
                         </div>
                         
                         <div class="player-controls">
-                            <!-- Prev Button -->
-                            <button class="control-btn prev-btn">
+                            <!-- Disabled buttons when no song -->
+                            <button class="control-btn prev-btn" disabled>
                                 <img src="asset/prev.png" alt="Prev" class="control-icon">
                             </button>
-                            <!-- Start Button -->
-                            <button class="control-btn play-btn">
+                            <button class="control-btn play-btn" disabled>
                                 <img src="asset/start.png" alt="Start" class="control-icon">
                             </button>
-                            <!-- Next Button -->
-                            <button class="control-btn next-btn">
+                            <button class="control-btn next-btn" disabled>
                                 <img src="asset/next.png" alt="Next" class="control-icon">
                             </button>
                         </div>
                         
                         <div class="player-controls">
-                            <!-- Volume Button -->
+                            <!-- Volume controls can remain active -->
                             <div class="volume-control-container">
                                 <button class="control-btn volume-btn">
                                     <img src="asset/volume.png" alt="Volume" class="control-icon">
@@ -275,12 +294,10 @@
                                     <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" orient="vertical">
                                 </div>
                             </div>
-                            <!-- Shuffle Button -->
-                            <button class="control-btn">
+                            <button class="control-btn" disabled>
                                 <img src="asset/shuffle.png" alt="Shuffle" class="control-icon">
                             </button>
-                            <!-- Repeat Button -->
-                            <button class="control-btn">
+                            <button class="control-btn" disabled>
                                 <img src="asset/repeat.png" alt="Repeat" class="control-icon">
                             </button>
                         </div>
@@ -296,40 +313,135 @@
     </div>
     
     <script>
-        // Wait for DOM content to load
         document.addEventListener('DOMContentLoaded', function () {
-            const audioFilePath = 'music/Stay Here.m4a'; // Path to your audio file
-            const audioElement = new Audio(audioFilePath); // Create the audio element with source
-            const progressBar = document.querySelector('.progress-bar'); // Progress bar element
+            const audioElement = new Audio();
+            const progressBar = document.querySelector('.progress-bar');
+            const songTitleElement = document.querySelector('.song-title');
+            const songArtistElement = document.querySelector('.song-artist');
+            const songCoverElement = document.querySelector('.song-cover');
+            const playButton = document.querySelector('.play-btn');
+            const playIcon = playButton.querySelector('img');
             
             // Initialize progress bar at 0
             progressBar.value = 0;
             
+            // Current song information
+            let currentSong = null;
+            
             // Play/Pause Button
-            document.querySelector('.play-btn').addEventListener('click', function() {
-                const playButton = document.querySelector('.play-btn');
-                const playIcon = playButton.querySelector('img'); // Get the <img> tag inside the button
-                
-                // Toggle between play and pause icons
-                if (playIcon.src.includes('start.png')) {
-                    playIcon.src = 'asset/pause.png'; // Change to pause icon
-                    playIcon.alt = 'Pause'; // Update alt text
-                    audioElement.play(); // Start playing the music
-                    console.log("Music started");
+            playButton.addEventListener('click', function() {
+                togglePlayPause();
+            });
+            
+            // Function to toggle play/pause
+            function togglePlayPause() {
+                if (audioElement.paused) {
+                    if (!currentSong) {
+                        // If no song is selected, play the first one
+                        const firstSongCard = document.querySelector('.media-card');
+                        if (firstSongCard) {
+                            playSongFromCard(firstSongCard);
+                        }
+                        return;
+                    }
+                    audioElement.play();
+                    playIcon.src = 'asset/pause.png';
+                    playIcon.alt = 'Pause';
                 } else {
-                    playIcon.src = 'asset/start.png'; // Change to start icon
-                    playIcon.alt = 'Start'; // Update alt text
-                    audioElement.pause(); // Pause the music
-                    console.log("Music paused");
+                    audioElement.pause();
+                    playIcon.src = 'asset/start.png';
+                    playIcon.alt = 'Start';
                 }
+            }
+            
+            // Function to play song from card
+            function playSongFromCard(card) {
+                const songFile = card.getAttribute('data-file');
+                const songName = card.getAttribute('data-song');
+                const artistName = card.getAttribute('data-artist');
+                const coverImage = card.getAttribute('data-cover') || card.querySelector('.media-img img').src;
+                
+                currentSong = {
+                    file: songFile,
+                    name: songName,
+                    artist: artistName,
+                    cover: coverImage
+                };
+                
+                // Show progress bar
+                document.querySelector('.progress-bar-container').style.display = 'block';
+                
+                // Update player UI
+                const songCoverElement = document.querySelector('.song-cover');
+                songCoverElement.innerHTML = `<img src="${coverImage}" alt="${songName}" class="img-fluid">`;
+                songCoverElement.classList.remove('no-song');
+                
+                document.querySelector('.song-title').textContent = songName;
+                document.querySelector('.song-artist').textContent = artistName;
+                
+                // Enable buttons
+                document.querySelectorAll('.player-controls button').forEach(btn => {
+                    btn.disabled = false;
+                });
+                
+                audioElement.src = songFile;
+                audioElement.play();
+                updatePlayButton(true);
+            }
+            
+            function updatePlayButton(isPlaying) {
+                const playIcon = document.querySelector('.play-btn img');
+                playIcon.src = isPlaying ? 'asset/pause.png' : 'asset/start.png';
+                playIcon.alt = isPlaying ? 'Pause' : 'Play';
+            }
+
+            // When no song is playing
+            function resetPlayerToDefault() {
+                document.querySelector('.progress-bar-container').style.display = 'none';
+                document.querySelector('.progress-bar').value = 0;
+                
+                const songCoverElement = document.querySelector('.song-cover');
+                songCoverElement.innerHTML = '<img src="asset/no-cover.png" alt="No song selected" class="img-fluid">';
+                songCoverElement.classList.add('no-song');
+                
+                document.querySelector('.song-title').textContent = 'No song selected';
+                document.querySelector('.song-artist').textContent = 'Select a song to play';
+                
+                // Disable buttons
+                document.querySelectorAll('.player-controls button').forEach(btn => {
+                    if (!btn.classList.contains('volume-btn')) {
+                        btn.disabled = true;
+                    }
+                });
+                
+                updatePlayButton(false);
+                currentSong = null;
+            }
+
+            // Initialize with default state
+            resetPlayerToDefault();
+
+            // Handle song end
+            audioElement.addEventListener('ended', function() {
+                updatePlayButton(false);
+            });
+
+            // Add click event to all song cards
+            document.querySelectorAll('.media-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Check if click was on the play overlay or its children
+                    const playOverlay = this.querySelector('.play-overlay');
+                    if (playOverlay && playOverlay.contains(e.target)) {
+                        playSongFromCard(this);
+                    }
+                });
             });
             
             // Update progress bar as music plays
             audioElement.addEventListener('timeupdate', function() {
-                const currentTime = audioElement.currentTime; // Current playback time
-                const duration = audioElement.duration; // Total duration of the track
+                const currentTime = audioElement.currentTime;
+                const duration = audioElement.duration;
                 
-                // Update progress bar value
                 if (duration) {
                     const progress = (currentTime / duration) * 100;
                     progressBar.value = progress;
@@ -342,57 +454,50 @@
                 audioElement.currentTime = seekTime;
             });
             
-            // Make progress bar clickable (for browsers that don't support input event on progress)
+            // Make progress bar clickable
             progressBar.addEventListener('click', function(e) {
                 const percent = e.offsetX / this.offsetWidth;
                 progressBar.value = percent * 100;
                 audioElement.currentTime = audioElement.duration * percent;
             });
             
-            // Volume Control
+            // Volume Control (keep your existing volume control code)
             const volumeBtn = document.querySelector('.volume-btn');
             const volumeIcon = volumeBtn.querySelector('img');
             const volumeSlider = document.querySelector('.volume-slider');
-            let lastVolume = 0.7; // Store last volume before mute
-
-            // Initialize
+            let lastVolume = 0.7;
+            
             audioElement.volume = volumeSlider.value;
             updateVolumeIcon();
-
-            // Volume slider interaction
+            
             volumeSlider.addEventListener('input', function() {
                 if (!audioElement.muted) {
                     audioElement.volume = this.value;
-                    lastVolume = this.value; // Update last volume
+                    lastVolume = this.value;
                 }
                 updateVolumeIcon();
             });
-
-            // Mute/unmute toggle
+            
             volumeBtn.addEventListener('click', function() {
                 if (audioElement.muted) {
-                    // Unmute and restore last volume
                     audioElement.muted = false;
                     audioElement.volume = lastVolume;
                     volumeSlider.value = lastVolume;
                 } else {
-                    // Mute and remember current volume
                     lastVolume = audioElement.volume;
                     audioElement.muted = true;
                     volumeSlider.value = 0;
                 }
                 updateVolumeIcon();
             });
-
-            // Update icon based on state
+            
             function updateVolumeIcon() {
                 volumeIcon.src = audioElement.muted || audioElement.volume === 0 
                     ? 'asset/volume-off.png' 
                     : 'asset/volume.png';
                 volumeIcon.alt = audioElement.muted ? 'Muted' : 'Volume';
             }
-
-            // Handle external volume changes
+            
             audioElement.addEventListener('volumechange', function() {
                 if (!audioElement.muted) {
                     volumeSlider.value = audioElement.volume;
@@ -400,14 +505,32 @@
                 updateVolumeIcon();
             });
             
-            // Prev Button (Placeholder for functionality)
-            document.querySelector('.prev-btn').addEventListener('click', function() {
-                console.log("Previous song");
+            // Handle song end
+            audioElement.addEventListener('ended', function() {
+                playIcon.src = 'asset/start.png';
+                playIcon.alt = 'Start';
+                // You could add auto-play next song functionality here
             });
             
-            // Next Button (Placeholder for functionality)
+            // Prev/Next buttons (basic implementation)
+            document.querySelector('.prev-btn').addEventListener('click', function() {
+                const currentCard = document.querySelector('.media-card.playing');
+                if (currentCard) {
+                    const prevCard = currentCard.previousElementSibling;
+                    if (prevCard && prevCard.classList.contains('media-card')) {
+                        playSongFromCard(prevCard);
+                    }
+                }
+            });
+            
             document.querySelector('.next-btn').addEventListener('click', function() {
-                console.log("Next song");
+                const currentCard = document.querySelector('.media-card.playing');
+                if (currentCard) {
+                    const nextCard = currentCard.nextElementSibling;
+                    if (nextCard && nextCard.classList.contains('media-card')) {
+                        playSongFromCard(nextCard);
+                    }
+                }
             });
         });
     </script>
