@@ -344,13 +344,19 @@ document.addEventListener('DOMContentLoaded', function () {
         return btn;
     }
 
-    // Toggle fullscreen view
     fullscreenBtn.addEventListener('click', function () {
         this.classList.toggle('active');
         fullscreenView.classList.toggle('active');
 
         if (fullscreenView.classList.contains('active')) {
             updateFullscreenView();
+            // Hide main content and right sidebar
+            document.querySelector('.layout__main').style.visibility = 'hidden';
+            document.querySelector('.layout__right-sidebar').style.visibility = 'hidden';
+        } else {
+            // Show main content and right sidebar
+            document.querySelector('.layout__main').style.visibility = 'visible';
+            document.querySelector('.layout__right-sidebar').style.visibility = 'visible';
         }
     });
 
@@ -386,6 +392,61 @@ document.addEventListener('DOMContentLoaded', function () {
         const lyrics = lyricsDatabase[key] || "Lyrics will appear here when available";
         fullscreenView.querySelector('.fs-lyrics').textContent = lyrics;
     }
+
+    const modal = document.getElementById('playlistModal');
+    const createModal = document.getElementById('createPlaylistModal');
+
+    const openBtn = document.querySelector('.btn-add-playlist');
+    const closeBtn = document.getElementById('closeModal');
+    const createBtn = document.querySelector('.create-playlist-btn');
+    const closeCreateBtn = document.getElementById('closeCreateModal');
+
+    // Open first modal
+    openBtn.addEventListener('click', () => {
+        modal.style.display = 'flex';
+    });
+
+    // Close first modal
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // Open second modal (Create)
+    createBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        createModal.style.display = 'flex';
+    });
+
+    // Close second modal
+    closeCreateBtn.addEventListener('click', () => {
+        createModal.style.display = 'none';
+    });
+
+    // Optional: click outside to close
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+        if (e.target === createModal) createModal.style.display = 'none';
+    });
+
+    const hideScrollbars = () => {
+        document.documentElement.style.setProperty('--scrollbar-width', '0px');
+        document.body.style.overflow = 'hidden';
+        
+        const style = document.createElement('style');
+        style.textContent = `
+          *::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
+        }
+        `;
+        document.head.appendChild(style);
+    };
+    
+    hideScrollbars();
+    setTimeout(hideScrollbars, 100);
+    window.addEventListener('resize', hideScrollbars);
 
 });
 

@@ -1,10 +1,15 @@
+:root {
+    --scrollbar-width: 0px;
+}
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: system-ui, sans-serif;
     font-family: 'Inter', system-ui, sans-serif;
     overflow: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 body {
@@ -12,39 +17,89 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-footer {
-    padding: 1rem;
+body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
 }
 
-.row {
-    flex-grow: 1;
-    height: 100%;
-}
-
+/* Main layout structure */
 .layout {
     background-color: #E4E5EE;
-    min-height: 100vh;
+    height: 100vh;
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-.layout__sidebar {
+.row.h-100.d-flex {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+}
+
+/* Sidebars common styles */
+.layout__left-sidebar,
+.layout__right-sidebar {
     background-color: #E4E5EE;
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    overflow: hidden;
+    height: calc(100vh - 4rem - 80px);
+    overflow-y: auto;
+    padding-bottom: 120px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-right: calc(-1 * var(--scrollbar-width));
+    padding-right: var(--scrollbar-width);
 }
 
+.layout__left-sidebar::-webkit-scrollbar,
+.layout__right-sidebar::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* Left sidebar specific */
+.layout__left-sidebar {
+    padding: 0 1.5rem;
+    width: 280px;
+    min-width: 280px;
+}
+
+/* Right sidebar specific */
+.layout__right-sidebar {
+    width: 280px;
+    min-width: 280px;
+    gap: 1rem;
+}
+
+.sidebar__logo-container {
+    padding: 2rem 0 1.5rem 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    background-color: #E4E5EE;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    right: var(--scrollbar-width);
+}
+
+/* Main content area */
 .layout__main {
     background-color: #F0F0F5;
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    height: calc(100vh - 4rem); 
+    flex: 1;
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    margin: 0 1.5rem;
+    height: calc(100vh - 4rem - 80px);
 }
 
 .layout__main header {
@@ -52,17 +107,91 @@ footer {
     top: 0;
     z-index: 10;
     background-color: #F0F0F5;
+    border-radius: 0.5rem;
     padding: 1rem;
+    margin: -1rem -1rem 1rem -1rem;
 }
 
 .main-scroll {
     overflow-y: auto;
-    flex-grow: 1;
     scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex: 1;
     padding-bottom: 100px;
-    
+    margin: -1rem;
+    padding: 1rem;
+    margin-right: calc(-1 * var(--scrollbar-width));
+    padding-right: var(--scrollbar-width);
 }
 
 .main-scroll::-webkit-scrollbar {
     display: none;
+    width: 0;
+    height: 0;
+}
+
+.sidebar__content {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-top: 0.5rem;
+    margin-right: calc(-1 * var(--scrollbar-width));
+    padding-right: var(--scrollbar-width);
+}
+
+.sidebar__content::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* Section titles */
+.section-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Right sidebar specific styles */
+.layout__right-sidebar .section-title {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+/* Friends boxes */
+.friends__box {
+    background-color: white;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.friends__box:hover {
+    background-color: #f8f9fa;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .layout__main {
+        height: calc(100vh - 4rem - 80px);
+    }
+}
+
+@media (max-width: 768px) {
+    .layout {
+        padding: 1rem;
+    }
+    
+    .layout__main {
+        margin: 0 0 1rem 0;
+        height: calc(100vh - 2rem - 80px);
+    }
+    
+    .music__player {
+        position: fixed;
+    }
 }
