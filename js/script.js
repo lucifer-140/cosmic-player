@@ -217,4 +217,175 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+    // === Static Lyrics Database ===
+    const lyricsDatabase = {
+        "Stay Here - Joker Xue": `黑暗里 月亮落了地
+        应该悲伤叹息 身体却没了力气
+        因为彼此怀疑 我们漂浮在这里
+        我们曾有引力 怎么没人记起
+        
+        Stay Here
+        I want you stay with me
+        用尽最后的空气
+        Stay Here
+        I want you stay with me
+        反正也没人回应
+        Stay Here Stay Stay
+        Stay Stay Stay Stay Stay Stay
+        Stay Here
+        I want you stay with me
+        在听不见的夜里
+        Stay Here
+        I want you stay with me
+        像没人看的电影
+        
+        看 天空在闪
+        来的太晚
+        Stay Here stay with me
+        就这样漫无目的
+        Stay Here stay with me
+        像坠入最深的海底
+        Stay Here
+        I want you stay with me
+        向着稀薄的光明
+        Stay Here
+        I want you stay with me
+        换个清白的姓名 再叫醒`,
+        
+        "小孩 - Joker Xue": `嘲笑我有多简单 像番茄加两个蛋
+        闭上眼就睡 多自然
+        想著你有多困难 从宇宙找颗尘埃
+        揉进我眼眶 多小孩
+        丢掉的你又想要拿什么缅怀
+        是不是不需要猜 又来的突然
+        你就对我说明白 就让我看明白
+        从什么时候我像小孩
+        我的天台从来热爱
+        不需要猜 别让我猜
+        你就对我说明白 就让我看明白
+        从什么时候我像小孩
+        我的天台从来热爱
+        不需要猜 别让我
+        
+        想著你有多困难 从宇宙找颗尘埃
+        揉进我眼眶 多小孩
+        丢掉的你又想要拿什么缅怀
+        是不是不需要猜 又来的突然
+        你就对我说明白 就让我看明白
+        从什么时候我像小孩
+        我的天台从来热爱
+        不需要猜 别让我猜
+        你就对我说明白 就让我看明白
+        从什么时候我像小孩
+        我的天台从来热爱
+        不需要猜 别让我猜
+        谁需要爱 就坦白
+        别让我一个人
+        你就对我说明白 就让我更明白
+        从什么时候我像小孩
+        我的天台从来热爱
+        不需要猜 别让我猜`,
+        
+        "绅士 - Joker Xue": `好久没见了 什么角色呢
+        细心装扮著 白色衬衫的袖扣是你送的
+        尽量表现著像不在意的
+        频繁暴露了自欺欺人者
+        越掩饰越深刻 你说我说听说
+        忍著言不由衷的段落
+        我反正决定自己难过
+        我想摸你的头发 只是简单的试探啊
+        我想给你个拥抱 像以前一样可以吗
+        你退半步的动作认真的吗
+        小小的动作伤害还那么大
+        我只能扮演个绅士 才能和你说说话
+        我能送你回家吗 可能外面要下雨啦
+        我能给你个拥抱 像朋友一样可以吗
+        我忍不住从背后抱了一下
+        尺度掌握在不能说想你啊
+        你就当刚认识的绅士
+        闹了个笑话吧
+        
+        尽量表现著善解人意的
+        频繁暴露了不欲人知的
+        越掩饰越深刻
+        想说听说别说
+        忍著言不由衷的段落
+        我反正注定留在角落
+        我想摸你的头发 只是简单的试探啊
+        我想给你个拥抱 像以前一样可以吗
+        你退半步的动作认真的吗
+        小小的动作伤害还那么大
+        我只能扮演个绅士
+        才能和你说说话
+        我能送你回家吗 可能外面要下雨啦
+        我能给你个拥抱 像朋友一样可以吗
+        我忍不住从背后抱了一下
+        尺度掌握在不能说想你啊
+        你就当刚认识的绅士 闹了个笑话吧
+        你能给我只左手 牵你到马路那头吗
+        我会像以前一样 看著来往的车子啊
+        我们的距离在眉间皱了下
+        迅速还原成路人的样子啊
+        越有礼貌我越害怕
+        绅士要放得下`
+    };
+    
+
+    // === Fullscreen Logic ===
+    const fullscreenBtn = document.querySelector('.fullscreen-btn') || document.querySelector('.player-controls').appendChild(createFullscreenBtn());
+    const fullscreenView = document.querySelector('.fullscreen-view');
+
+    // Create fullscreen button if it doesn't exist
+    function createFullscreenBtn() {
+        const btn = document.createElement('button');
+        btn.className = 'control-btn fullscreen-btn';
+        btn.innerHTML = '<img src="asset/song.png" alt="Fullscreen" class="control-icon">';
+        return btn;
+    }
+
+    // Toggle fullscreen view
+    fullscreenBtn.addEventListener('click', function () {
+        this.classList.toggle('active');
+        fullscreenView.classList.toggle('active');
+
+        if (fullscreenView.classList.contains('active')) {
+            updateFullscreenView();
+        }
+    });
+
+    // Tab switching logic
+    document.querySelectorAll('.fs-tab').forEach(tab => {
+        tab.addEventListener('click', function () {
+            document.querySelectorAll('.fs-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+
+            const tabId = this.getAttribute('data-tab');
+            document.querySelectorAll('.fs-tab-content').forEach(content => {
+                content.classList.remove('active');
+                if (content.id === tabId) {
+                    content.classList.add('active');
+                }
+            });
+        });
+    });
+
+    // Update fullscreen player content
+    function updateFullscreenView() {
+        const miniPlayer = document.querySelector('.floating-player');
+        const songTitle = miniPlayer.querySelector('.song-title')?.textContent || 'No song selected';
+        const songArtist = miniPlayer.querySelector('.song-artist')?.textContent || 'Select a song to play';
+        const songCover = miniPlayer.querySelector('.song-cover img')?.src || 'asset/no-cover.png';
+
+        fullscreenView.querySelector('.fs-song-title').textContent = songTitle;
+        fullscreenView.querySelector('.fs-song-artist').textContent = songArtist;
+        fullscreenView.querySelector('.fs-cover-image').src = songCover;
+
+        // Update lyrics
+        const key = `${songTitle} - ${songArtist}`;
+        const lyrics = lyricsDatabase[key] || "Lyrics will appear here when available";
+        fullscreenView.querySelector('.fs-lyrics').textContent = lyrics;
+    }
+
 });
+
