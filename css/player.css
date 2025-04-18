@@ -309,7 +309,6 @@
 .fullscreen-view {
     position: fixed;
     top: 0;
-    left: 16.666%;
     right: 0;
     height: calc(100vh - 4rem - 80px);
     background-color: #F0F0F5;
