@@ -1,0 +1,154 @@
+/* css/add-friend.css */
+
+#addFriendView {
+    padding: 1rem; /* Padding internal view */
+    color: #34364C; /* Warna teks default */
+}
+
+#addFriendView .add-friend-title {
+    font-size: 1.5rem; /* Ukuran judul view */
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+/* Styling Search Input di Add Friend View */
+#addFriendView .search-container {
+    margin-bottom: 2rem;
+    position: relative; /* Diperlukan untuk ikon search */
+}
+
+#addFriendView .search-input {
+    border-radius: 0.5rem;
+    border: 1px solid #d1d3e0; /* Border abu-abu muda */
+    padding-left: 2.75rem !important; /* Ruang untuk ikon search */
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    background-color: #FFFFFF; /* Background putih */
+}
+#addFriendView .search-input:focus {
+    border-color: #8A7EBE; /* Warna ungu primer saat fokus */
+    box-shadow: 0 0 0 0.2rem rgba(138, 126, 190, 0.25);
+}
+#addFriendView .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: auto;
+    pointer-events: none;
+}
+
+
+/* Friend Requests Section */
+#addFriendView .friend-requests-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #6B7280; /* Warna abu-abu seperti section title */
+    margin-bottom: 1rem;
+}
+
+.friend-request-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Jarak antar item request */
+}
+
+.friend-request-item {
+    background-color: #E4E5EE; /* Warna background layout */
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem; /* Jarak antara info kiri dan tombol kanan */
+    transition: box-shadow 0.2s ease;
+}
+.friend-request-item:hover {
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.friend-request-item .request-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Jarak antara avatar dan teks */
+    overflow: hidden; /* Agar teks tidak meluber */
+    flex-grow: 1; /* Ambil sisa ruang */
+}
+
+.friend-request-item .request-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #d1d3e0; /* Warna placeholder jika gambar tidak ada */
+    flex-shrink: 0; /* Jangan biarkan avatar menyusut */
+}
+
+.friend-request-item .request-details {
+    overflow: hidden; /* Untuk text-overflow */
+}
+
+.friend-request-item .request-username {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.friend-request-item .request-message {
+    font-size: 0.85rem;
+    color: #6c757d; /* Warna abu-abu */
+    margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.friend-request-item .request-actions {
+    display: flex;
+    gap: 0.5rem; /* Jarak antar tombol */
+    flex-shrink: 0; /* Jangan biarkan tombol menyusut */
+}
+
+/* Styling Tombol Accept & Reject */
+.friend-request-item .btn-accept,
+.friend-request-item .btn-reject {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.friend-request-item .btn-accept:active,
+.friend-request-item .btn-reject:active {
+    transform: scale(0.95);
+}
+
+.friend-request-item .btn-accept {
+    background-color: #8A7EBE; /* Warna ungu primer */
+    color: #FFFFFF;
+}
+.friend-request-item .btn-accept:hover {
+    background-color: #7161a5; /* Ungu lebih gelap */
+}
+
+.friend-request-item .btn-reject {
+    background-color: #d1d3e0; /* Warna abu-abu muda */
+    color: #34364C;
+}
+.friend-request-item .btn-reject:hover {
+    background-color: #babbc7; /* Abu-abu lebih gelap */
+}
+
+/* Placeholder jika tidak ada request */
+.no-requests {
+    text-align: center;
+    color: #6c757d;
+    padding: 2rem;
+    font-style: italic;
+}

@@ -10,9 +10,11 @@
 .media-card {
     width: 200px;
     cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    border-radius: 0.75rem;
+  }
+ 
 .media-img {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -76,13 +78,16 @@
 
 .media-card:hover {
     transform: translateY(-5px);
-}
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+  }
 
 .media-scroll {
     display: flex;
     flex-wrap: nowrap;
     overflow: hidden;
     width: 100%;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
 
 .media-scroll .media-card {

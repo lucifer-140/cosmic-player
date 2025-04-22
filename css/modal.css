@@ -1,0 +1,332 @@
+/* css/modal.css */
+
+/* --- Edit Playlist Modal Styling (Already Exists - Keep this) --- */
+
+#editPlaylistModal .modal-content {
+    background-color: #F0F0F5; /* Warna background utama konten */
+    border-radius: 0.75rem;    /* Radius sudut */
+    border: none;              /* Hapus border default */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Shadow agar menonjol */
+    color: #34364C;            /* Warna teks default */
+}
+
+#editPlaylistModal .modal-header {
+    background-color: #E4E5EE; /* Warna background layout */
+    border-bottom: 1px solid #d9dce6; /* Garis pemisah halus */
+    color: #34364C;            /* Warna teks header */
+    border-top-left-radius: 0.75rem; /* Sesuaikan radius atas */
+    border-top-right-radius: 0.75rem;
+}
+
+#editPlaylistModal .modal-title {
+    font-weight: 600; /* Judul lebih tebal */
+}
+
+/* Tombol close 'X' di header */
+#editPlaylistModal .modal-header .btn-close {
+    filter: invert(30%) sepia(10%) saturate(710%) hue-rotate(197deg) brightness(91%) contrast(87%); /* Warna agar cocok dengan teks */
+}
+ #editPlaylistModal .modal-header .btn-close:hover {
+     opacity: 0.8;
+ }
+
+
+#editPlaylistModal .modal-body {
+    padding: 1.5rem; /* Padding lebih di body */
+}
+
+#editPlaylistModal .form-label {
+    color: #6B7280; /* Warna label (abu-abu dari section title) */
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+#editPlaylistModal #playlistNameInput {
+    background-color: #FFFFFF; /* Background input putih */
+    border: 1px solid #d9dce6; /* Border abu-abu */
+    border-radius: 0.5rem;     /* Radius input */
+    padding: 0.6rem 1rem;      /* Padding input */
+    color: #34364C;
+}
+
+/* Style saat input di-fokus */
+#editPlaylistModal #playlistNameInput:focus {
+    border-color: #8A7EBE;     /* Border warna ungu primer */
+    box-shadow: 0 0 0 0.2rem rgba(138, 126, 190, 0.25); /* Shadow ungu saat fokus */
+    background-color: #FFFFFF;
+    color: #34364C;
+}
+
+#editPlaylistModal .modal-footer {
+    background-color: #E4E5EE; /* Warna background layout */
+    border-top: 1px solid #d9dce6; /* Garis pemisah halus */
+    border-bottom-left-radius: 0.75rem; /* Sesuaikan radius bawah */
+    border-bottom-right-radius: 0.75rem;
+}
+
+/* Tombol Simpan (Primary) */
+#editPlaylistModal .modal-footer #savePlaylistNameBtn {
+    background-color: #8A7EBE; /* Warna ungu primer */
+    border-color: #8A7EBE;
+    color: #FFFFFF;            /* Teks putih */
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;   /* Padding tombol */
+    border-radius: 0.5rem;     /* Radius tombol */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#editPlaylistModal .modal-footer #savePlaylistNameBtn:hover {
+    background-color: #7161a5; /* Warna ungu lebih gelap saat hover */
+    border-color: #7161a5;
+    color: #FFFFFF;
+}
+
+/* Tombol Batal (Secondary) */
+#editPlaylistModal .modal-footer .btn-secondary {
+    background-color: #d1d3e0; /* Warna abu-abu muda */
+    border-color: #d1d3e0;
+    color: #34364C;            /* Warna teks gelap */
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#editPlaylistModal .modal-footer .btn-secondary:hover {
+    background-color: #babbc7; /* Warna abu-abu lebih gelap saat hover */
+    border-color: #babbc7;
+    color: #34364C;
+}
+
+
+/* --- Select Playlist Modal Styling (MODIFIED / ADDED) --- */
+
+/* Apply general modal content styling from edit modal */
+#selectPlaylistModal .modal-content {
+    background-color: #F0F0F5; /* Match edit modal content background */
+    border-radius: 0.75rem;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    color: #34364C;
+}
+
+/* Apply general modal header styling from edit modal */
+#selectPlaylistModal .modal-header {
+    background-color: #E4E5EE; /* Match edit modal header background */
+    border-bottom: 1px solid #d9dce6;
+    color: #34364C;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+/* Apply general modal title styling from edit modal */
+#selectPlaylistModal .modal-title {
+    font-weight: 600;
+}
+
+/* Match close button styling from edit modal */
+#selectPlaylistModal .modal-header .btn-close {
+    filter: invert(30%) sepia(10%) saturate(710%) hue-rotate(197deg) brightness(91%) contrast(87%);
+}
+ #selectPlaylistModal .modal-header .btn-close:hover {
+     opacity: 0.8;
+ }
+
+
+/* Style the modal body - keep scrollable, adjust padding */
+#selectPlaylistModal .modal-body {
+  padding: 1.5rem; /* Use consistent padding */
+  padding-bottom: 0.5rem; /* Reduce bottom padding slightly to fit list margin */
+  max-height: 60vh; /* Keep max height for scrolling */
+  overflow-y: auto; /* Keep scroll */
+}
+
+#selectPlaylistModalList {
+  margin-bottom: 1rem; /* Add margin below the list before the footer */
+  border: none; /* Keep no border */
+  padding: 0; /* Remove any default list-group padding */
+}
+
+/* Styling for list items within the modal body */
+.select-playlist-item {
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #d9dce6; /* Use border color from edit modal theme */
+    border-radius: 0;
+    padding: 0.75rem 1rem;
+    background-color: transparent;
+    color: #34364C; /* Match text color from edit modal theme */
+    transition: background-color 0.2s ease;
+    width: 100%;
+    cursor: pointer; /* Indicate it's clickable */
+}
+
+.select-playlist-item:hover,
+.select-playlist-item:focus {
+  background-color: #E4E5EE; /* Use the layout background color for hover */
+  color: #34364C;
+  z-index: 2;
+}
+
+.select-playlist-item:last-child {
+    border-bottom: none;
+}
+
+/* Apply general modal footer styling from edit modal */
+#selectPlaylistModal .modal-footer {
+    background-color: #E4E5EE; /* Match edit modal footer background */
+    border-top: 1px solid #d9dce6;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+    justify-content: center; /* Keep centered button */
+    padding: 1rem; /* Adjust padding if needed */
+}
+
+/* Style the 'New Playlist' button to match the primary button in the edit modal */
+#selectPlaylistModal .modal-footer #newPlaylistBtnFromModal {
+    background-color: #8A7EBE; /* Match primary color */
+    border-color: #8A7EBE;
+    color: #FFFFFF;
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    display: flex; /* Use flex to align icon and text */
+    align-items: center;
+    gap: 0.25rem; /* Space between icon and text */
+}
+
+#selectPlaylistModal .modal-footer #newPlaylistBtnFromModal:hover {
+    background-color: #7161a5; /* Match primary hover color */
+    border-color: #7161a5;
+    color: #FFFFFF;
+}
+
+/* --- Create New Playlist Modal Styling (MODIFIED / ADDED) --- */
+
+/* Apply general modal content styling from edit modal */
+#createNewPlaylistModal .modal-content {
+    background-color: #F0F0F5;
+    border-radius: 0.75rem;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    color: #34364C;
+}
+
+/* Apply general modal header styling from edit modal */
+#createNewPlaylistModal .modal-header {
+    background-color: #E4E5EE;
+    border-bottom: 1px solid #d9dce6;
+    color: #34364C;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+/* Apply general modal title styling from edit modal */
+#createNewPlaylistModal .modal-title {
+    font-weight: 600;
+}
+
+/* Match close button styling from edit modal */
+#createNewPlaylistModal .modal-header .btn-close {
+    filter: invert(30%) sepia(10%) saturate(710%) hue-rotate(197deg) brightness(91%) contrast(87%);
+}
+ #createNewPlaylistModal .modal-header .btn-close:hover {
+     opacity: 0.8;
+ }
+
+/* Apply general modal body padding from edit modal */
+#createNewPlaylistModal .modal-body {
+    padding: 1.5rem;
+}
+
+/* Match form label styling from edit modal */
+#createNewPlaylistModal .form-label {
+    color: #6B7280;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Match input field styling from edit modal */
+#createNewPlaylistModal .form-control { /* Use form-control class for general inputs */
+    background-color: #FFFFFF;
+    border: 1px solid #d9dce6;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    color: #34364C;
+}
+
+/* Match input focus style from edit modal */
+#createNewPlaylistModal .form-control:focus {
+    border-color: #8A7EBE;
+    box-shadow: 0 0 0 0.2rem rgba(138, 126, 190, 0.25);
+    background-color: #FFFFFF;
+    color: #34364C;
+}
+
+
+/* Apply general modal footer styling from edit modal */
+#createNewPlaylistModal .modal-footer {
+    background-color: #E4E5EE;
+    border-top: 1px solid #d9dce6;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+    /* Keep default justify-content: flex-end for Save/Cancel buttons */
+}
+
+/* Match primary button styling from edit modal */
+#createNewPlaylistModal .modal-footer .btn-primary { /* Target generic btn-primary in footer */
+    background-color: #8A7EBE;
+    border-color: #8A7EBE;
+    color: #FFFFFF;
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#createNewPlaylistModal .modal-footer .btn-primary:hover {
+    background-color: #7161a5;
+    border-color: #7161a5;
+    color: #FFFFFF;
+}
+
+/* Match secondary button styling from edit modal */
+#createNewPlaylistModal .modal-footer .btn-secondary {
+    background-color: #d1d3e0;
+    border-color: #d1d3e0;
+    color: #34364C;
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#createNewPlaylistModal .modal-footer .btn-secondary:hover {
+    background-color: #babbc7;
+    border-color: #babbc7;
+    color: #34364C;
+}
+
+
+/* --- Styling untuk feedback sementara (Keep this) --- */
+#temporaryFeedback {
+    position: fixed;
+    bottom: 150px; /* Keep the higher position */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #8A7EBE; /* Warna ungu tema */
+    color: white;
+    padding: 12px 25px; /* Padding internal */
+    border-radius: 25px;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out, bottom 0.4s ease-in-out;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    
+    /* --- Tambahan untuk mengontrol lebar --- */
+    max-width: 300px; /* <-- Atur lebar maksimum, sesuaikan nilai 300px jika perlu */
+    text-align: center; /* <-- Opsional: Pusatkan teks di dalam box */
+    /* --- End Tambahan --- */
+}

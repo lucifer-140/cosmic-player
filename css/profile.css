@@ -1,0 +1,190 @@
+/* css/profile.css */
+
+/* Style for the main profile view container */
+#profileView {
+    /* Inherited display: none; and will be set to block by JS */
+    /* Inherited padding from .main-content-section if you keep that class */
+}
+
+.profile-container {
+    background-color: #E4E5EE; /* Match theme light background */
+    padding: 1.5rem;
+    border-radius: 0.75rem; /* Match theme border-radius */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    margin-bottom: 2rem; /* Space below the main profile info */
+    transition: all 0.4s ease;
+    transform: scale(1);
+    /* Uses d-flex from Bootstrap for internal layout */
+}
+
+.profile-avatar-placeholder {
+    width: 100px;
+    height: 100px;
+    background-color: #D1CFE4; /* Match theme light purple */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.profile-avatar-placeholder i {
+    font-size: 4rem;
+    color: #B3A3D6; /* Match theme purple shade */
+}
+
+.profile-info {
+    /* Uses flex-grow-1 from Bootstrap */
+}
+
+.profile-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #34364C; /* Dark theme text */
+    margin-bottom: 0.5rem !important;
+    /* Uses d-flex, align-items-center, gap-2 from Bootstrap */
+}
+
+.profile-name .editProfileIcon { /* More specific selector for the icon */
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.3s ease; /* Combined transitions */
+}
+
+.profile-name .editProfileIcon:hover {
+    opacity: 1;
+    transform: rotate(15deg) scale(1.1); /* Added hover effect from below */
+}
+
+.profile-stats {
+    font-size: 1rem;
+    color: #6B7280 !important; /* Muted theme text */
+}
+
+.user-playlists .section-title {
+    /* Inherits styles from .section-title */
+    margin-bottom: 1rem; /* Add space below title */
+}
+
+/* Basic styling for user playlist items (Example) */
+.user-playlists .row .col > div {
+    background-color: #F0F0F5; /* Match content background */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* --- Edit Profile View --- */
+#editProfileView {
+    /* Inherited display: none; and will be set to block by JS */
+}
+
+#editProfileView .section-title {
+    /* Inherits styles from .section-title */
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+#editProfileView .section-title .back-to-profile {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #34364C !important; /* Dark theme color */
+    text-decoration: none;
+    margin-right: 0.5rem;
+    transition: opacity 0.2s ease;
+}
+
+#editProfileView .section-title .back-to-profile:hover {
+    opacity: 0.8;
+}
+
+.edit-profile-form {
+    background-color: #F0F0F5; /* Match content background */
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.edit-profile-form .form-label {
+    color: #6B7280; /* Muted gray for labels */
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.edit-profile-form .form-control {
+    /* Consistent form control styling */
+    background-color: #FFFFFF;
+    border: 1px solid #d9dce6;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    color: #34364C;
+    /* Ensure focus styles are applied (e.g., from modal.css or utilities.css) */
+}
+
+/* Focus state for form controls within edit profile */
+.edit-profile-form .form-control:focus {
+    border-color: #8A7EBE;
+    box-shadow: 0 0 0 0.2rem rgba(138, 126, 190, 0.25);
+    background-color: #FFFFFF;
+    color: #34364C;
+}
+
+
+.profile-divider {
+    border: none;
+    height: 1px;
+    background-color: #d9dce6; /* Changed to a more subtle divider color */
+    margin: 1.5rem 0;
+}
+
+/* Container for action buttons */
+.edit-profile-actions {
+    /* This class should be added to the div in HTML:
+       <div class="d-flex justify-content-end gap-3 edit-profile-actions"> */
+    display: flex; /* Kept for clarity, though Bootstrap class exists */
+    justify-content: flex-end; /* Kept for clarity */
+    gap: 0.75rem; /* Standardized gap (Bootstrap gap-3 is 1rem) */
+    margin-top: 1rem; /* Add some space above the buttons */
+}
+
+/* Style for Primary Button (Save) */
+.edit-profile-actions .btn-primary, /* Target Bootstrap class or specific ID */
+#saveProfile {
+    background-color: #8A7EBE;
+    border-color: #8A7EBE;
+    color: #FFFFFF;
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.edit-profile-actions .btn-primary:hover,
+#saveProfile:hover {
+    background-color: #7161a5;
+    border-color: #7161a5;
+}
+
+/* Style for Secondary Button (Cancel) */
+.edit-profile-actions .btn-secondary, /* Target Bootstrap class or specific ID */
+#cancelEditProfile {
+    background-color: #d1d3e0;
+    border-color: #d1d3e0;
+    color: #34364C;
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.edit-profile-actions .btn-secondary:hover,
+#cancelEditProfile:hover {
+    background-color: #babbc7;
+    border-color: #babbc7;
+}
+
+/* Removed redundant .editProfileIcon styles as they were moved up */
+

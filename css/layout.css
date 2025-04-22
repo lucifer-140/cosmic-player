@@ -1,15 +1,24 @@
+/* web1/css/layout.css */
+
 :root {
-    --scrollbar-width: 0px;
+    --scrollbar-width: 0px; /* Lebar scrollbar (jika ingin dikompensasi) */
+    --friend-sidebar-width: 280px; /* Lebar sidebar kanan */
+    --left-sidebar-width: 280px; /* Lebar sidebar kiri */
+    --layout-gap: 1rem; /* Jarak antar kolom utama */
+    --transition-speed: 0.3s; /* Kecepatan animasi */
+    --player-height: 80px; /* Perkiraan tinggi player, sesuaikan jika perlu */
+    --layout-padding: 1.5rem; /* Padding utama layout */
 }
 
+/* === GLOBAL & BODY === */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Inter', system-ui, sans-serif;
-    overflow: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    overflow: hidden; /* Mencegah scroll di level body */
+    scrollbar-width: none; /* Sembunyikan scrollbar body (Firefox) */
+    -ms-overflow-style: none; /* Sembunyikan scrollbar body (IE/Edge) */
 }
 
 body {
@@ -18,41 +27,47 @@ body {
 }
 
 body::-webkit-scrollbar {
-    display: none;
+    display: none; /* Sembunyikan scrollbar body (Webkit) */
     width: 0;
     height: 0;
 }
 
-/* Main layout structure */
+/* === MAIN LAYOUT STRUCTURE === */
 .layout {
     background-color: #E4E5EE;
     height: 100vh;
-    padding: 2rem;
+    padding: var(--layout-padding);
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
-.row.h-100.d-flex {
-    flex: 1;
-    min-height: 0;
+/* === FLEX ROW FOR COLUMNS === */
+.layout > .row.h-100.d-flex {
+    flex: 1; /* Mengisi sisa tinggi setelah header/footer layout (jika ada) */
+    min-height: 0; /* Penting untuk flex item agar tidak meluap */
     position: relative;
+    gap: var(--layout-gap); /* Mengatur jarak antar kolom (sidebar kiri, main, sidebar kanan) */
+    align-items: stretch; /* Pastikan kolom meregang setinggi row */
 }
 
-/* Sidebars common styles */
+/* === SIDEBARS COMMON (jika ada style umum) === */
 .layout__left-sidebar,
 .layout__right-sidebar {
-    background-color: #E4E5EE;
-    padding: 2rem;
+    background-color: #E4E5EE; /* Warna latar sidebar */
+    /* Tinggi dihitung berdasarkan tinggi viewport dikurangi padding layout dan tinggi player */
+    height: calc(100vh - (var(--layout-padding) * 2) - var(--player-height));
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 4rem - 80px);
-    overflow-y: auto;
-    padding-bottom: 120px;
+    overflow-y: auto; /* Mengizinkan scroll vertikal */
+    padding-bottom: 120px; /* Padding bawah agar konten tidak tertutup player saat scroll */
+
+    /* Menyembunyikan scrollbar visual */
     scrollbar-width: none;
     -ms-overflow-style: none;
-    margin-right: calc(-1 * var(--scrollbar-width));
-    padding-right: var(--scrollbar-width);
+    /* Kompensasi jika scrollbar memakan ruang (opsional, karena width=0) */
+    /* margin-right: calc(-1 * var(--scrollbar-width)); */
+    /* padding-right: var(--scrollbar-width); */
 }
 
 .layout__left-sidebar::-webkit-scrollbar,
@@ -62,66 +77,103 @@ body::-webkit-scrollbar {
     height: 0;
 }
 
-/* Left sidebar specific */
+/* === LEFT SIDEBAR SPECIFIC === */
 .layout__left-sidebar {
-    padding: 0 1.5rem;
-    width: 280px;
-    min-width: 280px;
-}
+    /* Hapus overflow-y dan scrollbar hiding dari sini */
+    /* overflow-y: auto; */
+    /* scrollbar-width: none; */
+    /* -ms-overflow-style: none; */
 
-/* Right sidebar specific */
-.layout__right-sidebar {
-    width: 280px;
-    min-width: 280px;
-    gap: 1rem;
-}
-
-.sidebar__logo-container {
-    padding: 2rem 0 1.5rem 0;
-    margin-bottom: 1.5rem;
-    text-align: center;
     background-color: #E4E5EE;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    right: var(--scrollbar-width);
+    height: calc(100vh - (var(--layout-padding) * 2) - var(--player-height));
+    display: flex; /* Penting untuk flex:1 pada .sidebar__content */
+    flex-direction: column; /* Konten (logo & content div) ditumpuk vertikal */
+    padding: 0; /* Hapus padding utama, atur di container internal */
+    width: var(--left-sidebar-width);
+    min-width: var(--left-sidebar-width);
+    flex-shrink: 0;
+    /* Hapus padding-bottom, karena scroll diatur di .sidebar__content */
+    /* padding-bottom: 120px; */
 }
 
-/* Main content area */
+/* Hapus rule ::-webkit-scrollbar untuk .layout__left-sidebar jika ada */
+/* .layout__left-sidebar::-webkit-scrollbar { display: none; } */
+
+
+/* === Sticky Logo Container === */
+.sidebar__logo-container {
+    padding: 1.5rem 1.5rem; /* Beri padding di dalam container logo */
+    margin-bottom: 0; /* Hapus margin bawah jika ada, atur jarak dengan padding */
+    text-align: center;
+    background-color: #E4E5EE; /* PENTING: Harus ada background */
+    position: sticky;          /* Membuatnya menempel */
+    top: 0;                    /* Menempel di bagian atas */
+    z-index: 10;               /* Pastikan di atas konten yang scroll */
+    /* Optional: tambahkan border bawah jika diinginkan */
+    /* border-bottom: 1px solid rgba(0,0,0,0.05); */
+}
+
+/* === Scrollable Content Container === */
+.sidebar__content {
+    flex: 1; /* Mengisi sisa ruang vertikal di bawah logo */
+    overflow-y: auto; /* SCROLL diatur di sini */
+    padding: 0 1.5rem 1.5rem 1.5rem; /* Padding untuk konten (atas 0, lainnya 1.5rem) */
+    padding-bottom: 120px; /* Padding bawah agar tak tertutup player saat scroll */
+
+    /* Scrollbar hiding dipindahkan ke sini */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.sidebar__content::-webkit-scrollbar {
+    display: none; /* Sembunyikan scrollbar untuk Webkit */
+    width: 0;
+    height: 0;
+}
+
+
+/* === MAIN CONTENT AREA === */
 .layout__main {
     background-color: #F0F0F5;
-    padding: 1rem;
+    padding: 1rem; /* Padding internal area main */
     border-radius: 0.5rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    flex: 1;
+    flex: 1; /* Mengisi ruang fleksibel yang tersisa */
     display: flex;
     flex-direction: column;
-    min-width: 0;
-    margin: 0 1.5rem;
-    height: calc(100vh - 4rem - 80px);
+    min-width: 0; /* Penting agar bisa menyusut jika perlu */
+    height: calc(100vh - (var(--layout-padding) * 2) - var(--player-height)); /* Samakan tinggi dengan sidebar */
+
+    /* --- Tambahkan Transisi --- */
+    /* Transisi untuk margin/width jika diperlukan (meski flex:1 biasanya cukup) */
+    transition: margin-right var(--transition-speed) ease-in-out,
+                width var(--transition-speed) ease-in-out;
 }
 
+/* Header di dalam Main Content */
 .layout__main header {
     position: sticky;
     top: 0;
     z-index: 10;
-    background-color: #F0F0F5;
-    border-radius: 0.5rem;
-    padding: 1rem;
+    background-color: #F0F0F5; /* Samakan dengan bg main */
+    /* Mengompensasi padding parent agar header menempel ke tepi atas .layout__main */
     margin: -1rem -1rem 1rem -1rem;
+    padding: 1rem;
+    border-radius: 0.5rem 0.5rem 0 0; /* Radius hanya di atas jika sticky */
 }
 
+/* Area Scroll di dalam Main Content */
 .main-scroll {
-    overflow-y: auto;
+    overflow-y: auto; /* Scroll vertikal untuk konten utama */
     scrollbar-width: none;
     -ms-overflow-style: none;
-    flex: 1;
+    flex: 1; /* Mengisi sisa tinggi di .layout__main setelah header */
+    /* Padding untuk konten di dalam area scroll */
+    /* Mengompensasi margin negatif header */
+    /* Hapus margin negatif jika tidak pakai header sticky */
+    margin: 0 -1rem -1rem -1rem;
+    padding: 0 1rem 1rem 1rem; /* Padding bawah agar tak tertutup player */
     padding-bottom: 100px;
-    margin: -1rem;
-    padding: 1rem;
-    margin-right: calc(-1 * var(--scrollbar-width));
-    padding-right: var(--scrollbar-width);
 }
 
 .main-scroll::-webkit-scrollbar {
@@ -130,14 +182,89 @@ body::-webkit-scrollbar {
     height: 0;
 }
 
-.sidebar__content {
+/* === RIGHT SIDEBAR SPECIFIC (FRIEND ACTIVITY) === */
+.layout__right-sidebar {
+    width: var(--friend-sidebar-width);
+    min-width: var(--friend-sidebar-width); /* Mencegah menyusut secara default */
+    flex-shrink: 0; /* Mencegah sidebar kanan menyusut secara default */
+    gap: 1rem; /* Jarak antar item di dalam sidebar kanan */
+
+    padding-top: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 0rem;
+    padding-left: 1.5rem;
+    /* --- Tambahkan Transisi --- */
+    transition: width var(--transition-speed) ease-in-out,
+                min-width var(--transition-speed) ease-in-out,
+                padding var(--transition-speed) ease-in-out,
+                margin var(--transition-speed) ease-in-out,
+                opacity var(--transition-speed) ease-in-out;
+    will-change: width, min-width, padding, opacity; /* Hint performa */
+}
+
+/* === STATE WHEN FRIEND ACTIVITY IS HIDDEN === */
+/* Targetkan .layout ketika memiliki class .friend-activity-hidden */
+.layout.friend-activity-hidden .layout__right-sidebar {
+    width: 0;
+    min-width: 0; /* Izinkan menyusut hingga 0 */
+    opacity: 0;
+    padding-left: 0;  /* Hilangkan padding horizontal */
+    padding-right: 0;
+    margin-left: 0;   /* Hilangkan margin jika ada */
+    margin-right: 0;
+    overflow: hidden; /* Sembunyikan konten saat menyusut */
+    /* Hentikan gap internal jika perlu */
+    /* gap: 0; */
+    /* Hentikan border jika ada */
+    /* border: none; */
+}
+
+/* Konten utama akan otomatis mengisi ruang karena sidebar kanan menyusut */
+/* Tidak perlu style tambahan untuk .layout__main di state hidden, kecuali ada kasus khusus */
+
+
+/* === RESPONSIVE ADJUSTMENTS (Contoh) === */
+@media (max-width: 992px) {
+    /* Mungkin perlu penyesuaian tinggi atau lebar di layar medium */
+    /* .layout__main, .layout__left-sidebar, .layout__right-sidebar {
+        height: calc(100vh - (var(--layout-padding) * 2) - var(--player-height) - X);
+    } */
+}
+
+@media (max-width: 768px) {
+     /* Mungkin sidebar disembunyikan default atau kolom menumpuk */
+    .layout {
+        padding: 1rem; /* Kurangi padding layout */
+        --layout-padding: 1rem; /* Update variabel jika digunakan di kalkulasi */
+    }
+
+    /* Contoh: Sembunyikan sidebar di layar kecil */
+    /* .layout__left-sidebar, .layout__right-sidebar {
+        display: none;
+    } */
+
+    .layout > .row.h-100.d-flex {
+        gap: 0; /* Hilangkan gap jika kolom menumpuk atau sidebar hilang */
+        flex-direction: column; /* Contoh jika ingin menumpuk */
+    }
+     .layout__main {
+         /* Sesuaikan tinggi jika kolom menumpuk */
+         /* height: auto; */
+     }
+}
+
+/* Style lain yang mungkin ada di layout.css Anda sebelumnya */
+/* Seperti .sidebar__content, .section-title, dll. */
+/* Pastikan tidak ada yang konflik dengan struktur baru */
+
+.sidebar__content { /* Jika class ini digunakan di dalam sidebar */
     flex: 1;
-    overflow-y: auto;
+    overflow-y: auto; /* Scroll internal jika diperlukan */
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding-top: 0.5rem;
-    margin-right: calc(-1 * var(--scrollbar-width));
-    padding-right: var(--scrollbar-width);
+    /* padding-top: 0.5rem; */
+    /* margin-right: calc(-1 * var(--scrollbar-width)); */
+    /* padding-right: var(--scrollbar-width); */
 }
 
 .sidebar__content::-webkit-scrollbar {
@@ -146,52 +273,31 @@ body::-webkit-scrollbar {
     height: 0;
 }
 
-/* Section titles */
+/* Section titles (jika ada di layout.css) */
 .section-title {
     font-size: 0.875rem;
     font-weight: 600;
     color: #6B7280;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    margin-bottom: 0.5rem; /* Tambah margin bawah */
 }
 
-/* Right sidebar specific styles */
+/* Right sidebar specific styles (jika ada) */
 .layout__right-sidebar .section-title {
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
+    margin-bottom: 1.5rem; /* Margin lebih besar di kanan */
+    /* font-size: 1rem; */ /* Ukuran font berbeda jika perlu */
 }
 
-/* Friends boxes */
-.friends__box {
-    background-color: white;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
+/* (Hapus duplikasi style jika ada di file css lain seperti friends.css) */
+/* .friends__box { ... } */
+
+/* Tambahkan ini di layout.css atau file CSS global lainnya */
+.main-scroll.no-scroll-for-player {
+    overflow: hidden !important; /* Paksa agar tidak scroll */
 }
 
-.friends__box:hover {
-    background-color: #f8f9fa;
-}
-
-
-/* Responsive adjustments */
-@media (max-width: 992px) {
-    .layout__main {
-        height: calc(100vh - 4rem - 80px);
-    }
-}
-
-@media (max-width: 768px) {
-    .layout {
-        padding: 1rem;
-    }
-    
-    .layout__main {
-        margin: 0 0 1rem 0;
-        height: calc(100vh - 2rem - 80px);
-    }
-    
-    .music__player {
-        position: fixed;
-    }
+/* Alternatif (atau tambahan jika perlu): Nonaktifkan scroll di body */
+body.no-scroll-for-player {
+    overflow: hidden !important;
 }
