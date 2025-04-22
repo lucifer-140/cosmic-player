@@ -54,6 +54,21 @@ button:hover {
     height: auto;
     pointer-events: none;
 }
+.search-input:focus {
+    /* Ganti border color default Bootstrap (biru) dengan warna ungu tema Anda */
+    border-color: #8A7EBE; /* <-- Ganti dengan kode warna ungu tema yang sesuai */
+    
+    /* Ganti box-shadow default Bootstrap (biru) dengan shadow warna ungu tema Anda */
+    /* Nilai rgba didapat dari warna ungu tema dengan opacity (misalnya 0.25) */
+    box-shadow: 0 0 0 0.2rem rgba(138, 126, 190, 0.25); /* <-- Sesuaikan jika warna rgba berbeda */
+    
+    /* Pastikan background dan warna teks tetap sesuai saat fokus jika diperlukan */
+    background-color: #FFFFFF; /* Contoh: tetap putih saat fokus */
+    color: #34364C; /* Contoh: teks tetap gelap saat fokus */
+    
+    /* Opsional: Hapus outline default browser jika box-shadow sudah cukup */
+    /* outline: none; */
+}
 
 .user__notifications,
 .user__img {
@@ -64,4 +79,133 @@ button:hover {
 
 .user__img {
     object-fit: cover;
+}
+
+.dropdown {
+    position: relative !important;
+  }
+/* --- Dropdown Menu Styling --- */
+.dropdown-menu {
+    
+    /* Warna background yang senada dengan background konten modal */
+    background-color: #ffffff; /* Atau #E4E5EE jika ingin lebih kontras */
+
+    border: none; /* Hapus border default Bootstrap */
+    border-radius: 0.75rem; /* Gunakan radius sudut yang sama dengan modal */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Shadow yang senada dengan modal */
+
+    padding: 0.5rem 0; /* Sesuaikan padding vertikal */
+    /* min-width mungkin sudah diatur di HTML atau Bootstrap, sesuaikan jika perlu */
+    /* Contoh: min-width: 240px; */
+
+    color: #34364C; /* Warna teks default untuk item */
+    overflow: hidden; /* Penting untuk memastikan border-radius terlihat saat item di-hover/fokus */
+    /* Animasi Awal */
+    display: block !important; /* Override Bootstrap default */
+    opacity: 0;
+    /* Initial state slightly up */
+    transform: translateY(-10px);
+    visibility: hidden;
+    transition:
+        opacity 0.25s ease-out,
+        transform 0.25s ease-out,
+        visibility 0.25s;
+    pointer-events: none;
+
+}
+/* State ketika dropdown terbuka */
+.dropdown-menu.show {
+    opacity: 1;
+    /* Kembali ke posisi Y normal */
+    transform: translateY(0); /* <-- PERUBAHAN di sini */
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .dropdown-menu:not(.show) {
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+/* --- Dropdown Item Styling --- */
+.dropdown-item {
+    
+    color: #34364C; /* Warna teks gelap utama tema */
+    /* Padding disesuaikan */
+    padding: 0.75rem 1.5rem; /* Contoh: padding 1.5rem di kanan kiri */
+    padding-left: 1.5rem; /* Sesuaikan jika perlu agar teks rata kiri */
+
+    background-color: transparent; /* Background transparan saat tidak di-hover */
+    transition: background-color 0.2s ease, color 0.2s ease; /* Tambahkan transisi halus */
+
+    /* Penanganan teks panjang */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: 
+    background-color 0.2s ease,
+    transform 0.2s ease;
+  transform: translateX(-5px);
+  opacity: 1;
+  
+}
+.dropdown-menu.show .dropdown-item {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  /* Animasi berurutan untuk setiap item */
+.dropdown-menu.show .dropdown-item:nth-child(1) { transition-delay: 0.1s; }
+.dropdown-menu.show .dropdown-item:nth-child(2) { transition-delay: 0.15s; }
+.dropdown-menu.show .dropdown-item:nth-child(3) { transition-delay: 0.2s; }
+.dropdown-menu.show .dropdown-item:nth-child(4) { transition-delay: 0.25s; }
+.dropdown-menu.show .dropdown-item:nth-child(5) { transition-delay: 0.3s; }
+.dropdown-menu.show .dropdown-divider { transition-delay: 0.35s; }
+.dropdown-menu.show .dropdown-item:nth-child(6) { transition-delay: 0.5s; }
+/* Gaya saat item di-hover atau fokus */
+.dropdown-item:hover,
+.dropdown-item:focus {
+    transform: scale(0.95) !important;
+
+    /* Background saat hover/fokus, senada dengan background layout/header modal */
+    background-color: #E4E5EE; /* Warna abu-abu muda tema */
+    color: #34364C; /* Warna teks tetap gelap */
+    border-radius: 5px;
+}
+
+/* Gaya untuk item yang aktif (jika ada, misal pada navigasi) */
+.dropdown-item.active,
+.dropdown-item:active {
+    /* Gaya bisa sama dengan hover/focus, atau beri indikasi visual lain */
+    background-color: #E4E5EE; /* Atau warna ungu tema jika item aktif itu primary */
+    color: #34364C; /* Teks tetap gelap */
+    /* Tambahan gaya jika perlu, misal border kiri */
+    /* border-left: 4px solid #8A7EBE; */
+    /* padding-left: calc(1.5rem - 4px); */
+}
+
+/* Pastikan warna ikon dan teks lain di dalam item mengikuti */
+/* Jika struktur item dropdown Anda seperti di profil (icon + div), tambahkan ini: */
+.dropdown-item i {
+    /* display: none; <-- Hapus atau ubah ini jika ikon ingin ditampilkan */
+    display: inline-block; /* Atau flex jika menggunakan flexbox */
+    color: inherit;
+    /* Sesuaikan ukuran ikon jika perlu, misalnya font-size: 1.2rem; */
+    /* vertical-align: middle; (mungkin diperlukan) */
+}
+
+.dropdown-item .fw-medium {
+     color: inherit; /* Teks utama item mewarisi warna */
+}
+
+.dropdown-item .text-muted {
+     color: #6B7280 !important; /* Pastikan teks muted menggunakan warna abu-abu muted tema */
+}
+
+
+/* --- Dropdown Divider Styling --- */
+.dropdown-divider {
+    /* Warna garis pemisah, senada dengan border di modal */
+    border-top: 1px solid #d9dce6; /* Warna border abu-abu tema */
+    margin: 0.5rem 1.5rem; /* Sesuaikan margin agar tidak penuh lebar */
 }

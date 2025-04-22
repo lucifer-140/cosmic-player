@@ -1,0 +1,311 @@
+/* Add this to a new file like css/artist-detail.css or merge into an existing one */
+
+/* Styles for the main artist detail section */
+#artistDetailView {
+    /* Inherits padding/margin from main-content-section */
+}
+
+/* Styles for the header section */
+.artist-header {
+    /* Using a subtle background or gradient similar to playlist header */
+    /* You might adjust this color based on your overall theme variables */
+    padding: 2rem 1.5rem; /* Adjust padding as needed */
+    align-items: center; /* Ensure content is vertically aligned */
+    margin-bottom: 1.5rem; /* Add margin below header */
+}
+
+/* Styles for the artist photo */
+.artist-photo {
+    width: 150px; /* Consistent size */
+    height: 150px; /* Consistent size */
+    object-fit: cover;
+    /* rounded-circle class from Bootstrap handles the shape */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Added shadow similar to playlist cover */
+}
+
+/* Styles for the artist info container */
+.artist-info {
+    /* flex-grow-1 class in HTML handles the expansion */
+}
+
+/* Styles for the artist name */
+.artist-name {
+    font-size: 2.5rem; /* Larger font size for main title */
+    font-weight: 700; /* Bold font weight */
+    color: var(--text-color, #333); /* Use text color variable or default */
+    margin-bottom: 0.5rem; /* Adjust margin */
+}
+
+/* Styles for the song count */
+.artist-song-count {
+    font-size: 1rem; /* Adjust font size */
+    color: var(--text-color-light, #6c757d); /* Use light text color variable or default */
+    margin-bottom: 1.5rem; /* Adjust margin */
+}
+
+/* Styles for the Play button in the header */
+/* This button uses the .btn-icon class and specific colors */
+.btn-icon.btn-play-artist-header {
+    background-color: #8A7EBE; /* Warna ungu primary dari tema */
+    color: #FFFFFF; /* Teks putih */
+    border: none; /* No border */
+    padding: 0.75rem 2rem; /* Adjusted padding for a button feel */
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    font-size: 1.2rem; /* Adjust font size */
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Add transition */
+}
+
+.btn-icon.btn-play-artist-header:hover {
+    background-color: #7161a5; /* Warna ungu primary lebih gelap saat hover */
+    color: #FFFFFF; /* Keep text white on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+
+/* Specific style for the play icon inside the artist header button */
+.btn-icon.btn-play-artist-header i {
+    font-size: 1.5rem; /* Adjust icon size within button */
+    margin-right: 0.5rem; /* Space between icon and text */
+    color: #FFFFFF; /* Ensure icon color is white */
+}
+
+
+/* Styles for the song list section */
+.artist-song-list {
+    padding: 0 1.5rem 1.5rem; /* Adjust padding to match header side padding */
+}
+
+/* Styles for the song list header */
+.artist-song-list .d-flex.text-muted.small.mb-2.border-bottom.pb-2 {
+    align-items: center;
+    font-size: 0.9rem; /* Consistent small font size */
+    color: var(--text-color-light, #6c757d) !important; /* Use light text color */
+    border-bottom-color: rgba(0,0,0,0.1) !important; /* Lighter border */
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem !important;
+}
+
+/* Styles for individual song items */
+.artist-song-list .song-item {
+    /* Removed background-color like playlist song items */
+    background-color: transparent;
+    border-radius: 0.6rem; /* Consistent border-radius */
+    padding: 0.75rem 1rem; /* Consistent padding */
+    margin-bottom: 0.5rem; /* Consistent margin */
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Consistent gap */
+    cursor: pointer; /* Indicate clickable */
+}
+
+/* Hover state - warna sedikit lebih gelap dari background main */
+.artist-song-list .song-item:hover {
+    background-color: #e8e8ed; /* Consistent hover color */
+}
+
+/* State ketika lagu sedang diputar */
+.artist-song-list .song-item.playing {
+    background-color: #E7DCFF; /* Consistent playing color */
+    /* You can add other styles if needed */
+}
+
+/* Kontainer untuk tombol (like, listening) dan durasi */
+.artist-song-list .song-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Consistent gap */
+    margin-left: auto; /* Push to the right */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Styles for the song number */
+.artist-song-list .song-item .me-3.text-muted.text-center {
+     width: 25px; /* Ensure consistent width */
+     font-size: 0.9rem; /* Consistent font size */
+     color: var(--text-color-light, #6c757d); /* Consistent color */
+}
+.artist-song-list .song-item.playing .me-3.text-muted.text-center {
+     color: #555; /* Consistent playing color */
+}
+
+
+/* Styles for the song item cover image */
+.artist-song-list .song-item img.rounded {
+    width: 40px; /* Consistent size */
+    height: 40px; /* Consistent size */
+    object-fit: cover;
+    flex-shrink: 0;
+    background-color: #D9D9D9; /* Placeholder background */
+    border-radius: 4px; /* Consistent border-radius */
+    margin-right: 0; /* Removed margin here, using gap in .song-item */
+}
+
+/* Styles for the song item details (title and artist) */
+.artist-song-list .song-item .song-item-details {
+    overflow: hidden;
+    flex-grow: 1; /* Let details take space */
+}
+
+/* Styles for the song title */
+.artist-song-list .song-item .song-item-title {
+    font-size: 0.95rem; /* Consistent font size */
+    font-weight: 500; /* Consistent font weight */
+    color: var(--text-color, #333); /* Use text color variable or default */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+}
+
+/* Styles for the song artist */
+.artist-song-list .song-item .song-item-artist {
+    font-size: 0.8rem; /* Consistent font size */
+    color: var(--text-color-light, #6c757d); /* Use light text color variable or default */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+}
+
+.artist-song-list .song-item.playing .song-item-artist {
+    color: #555; /* Consistent playing color */
+}
+
+/* Styles for the song duration */
+.artist-song-list .song-item .song-item-time {
+    width: 50px; /* Consistent width */
+    text-align: end;
+    font-size: 0.9rem; /* Consistent font size */
+    color: var(--text-color-light, #6c757d); /* Consistent color */
+    margin-right: 0; /* Removed margin, using gap in .song-item-actions */
+}
+
+.artist-song-list .song-item.playing .song-item-time {
+    color: #555; /* Consistent playing color */
+}
+
+/* Styles for the like button (using .btn-icon pattern) */
+.artist-song-list .song-item .like-btn {
+    /* Using Bootstrap btn, btn-sm, btn-link, text-muted, p-0 classes */
+    /* Apply .btn-icon padding/hover if desired, or keep as btn-link */
+    /* Example applying btn-icon hover: */
+     background-color: transparent;
+     border: none;
+     padding: 5px; /* Small padding */
+     cursor: pointer;
+     transition: transform 0.2s ease, background-color 0.2s ease;
+     border-radius: 50%;
+     color: var(--text-color-light, #6c757d); /* Default color */
+}
+.artist-song-list .song-item .like-btn:hover {
+    transform: scale(1.1);
+    background-color: rgba(0,0,0, 0.05);
+    color: var(--text-color, #333); /* Darker color on hover */
+}
+
+/* Styles for the active/liked heart icon */
+.artist-song-list .song-item .like-btn i.fas {
+    color: var(--bs-danger, #dc3545); /* Consistent liked color (Bootstrap red) */
+}
+
+/* Styles for the listening icon */
+.artist-song-list .song-item .song-item-listening-icon {
+    width: 20px; /* Consistent size */
+    height: 20px; /* Consistent size */
+    display: none; /* Hidden by default */
+    vertical-align: middle;
+    color: var(--bs-primary, #0d6efd); /* Bootstrap primary color */
+    margin-left: 0; /* Removed margin, using gap in .song-item-actions */
+}
+
+/* Show listening icon ONLY when .song-item has .playing class */
+.artist-song-list .song-item.playing .song-item-listening-icon {
+    display: inline-block;
+}
+
+
+/* Add any specific styles for the back-to-main link if needed */
+.back-to-main {
+    /* Using Bootstrap text-decoration-none, text-dark, me-3, fs-4 classes */
+    color: var(--text-color, #333) !important; /* Ensure color matches theme */
+}
+
+
+/* === NEW ARTIST LIST VIEW STYLES === */
+
+/* Styles for the artist list view container */
+#artistListView {
+    padding: 0 1.5rem 1.5rem; /* Consistent side padding with other sections */
+    /* Inherits padding/margin from main-content-section */
+}
+
+/* Styles for the artist list container */
+.artist-list {
+    padding: 0 1.5rem 1.5rem; /* Consistent side padding with other sections */
+}
+
+/* Styles for individual artist list items */
+.artist-list-item {
+    background-color: transparent; /* Consistent with song-item */
+    border-radius: 0.6rem; /* Consistent border-radius */
+    padding: 0.75rem 1rem; /* Consistent padding */
+    margin-bottom: 0.5rem; /* Consistent margin */
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Consistent gap */
+    cursor: pointer; /* Indicate clickable */
+}
+
+/* Hover state for artist list items */
+.artist-list-item:hover {
+    background-color: #e8e8ed; /* Consistent hover color */
+}
+
+/* Styles for the artist list photo */
+.artist-list-photo {
+    width: 50px; /* Slightly larger than song cover */
+    height: 50px; /* Slightly larger than song cover */
+    object-fit: cover;
+    flex-shrink: 0;
+    background-color: #D9D9D9; /* Placeholder background */
+    /* rounded-circle class handles the shape */
+}
+
+/* Styles for the artist list details (name and meta) */
+.artist-list-details {
+    overflow: hidden;
+    flex-grow: 1; /* Let details take space */
+}
+
+/* Styles for the artist name in list */
+.artist-list-name {
+    font-size: 1rem; /* Adjust font size */
+    font-weight: 500; /* Consistent font weight */
+    color: var(--text-color, #333); /* Use text color variable or default */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+}
+
+/* Styles for the artist meta (e.g., "Artist", song count) */
+.artist-list-meta {
+    font-size: 0.85rem; /* Adjust font size */
+    color: var(--text-color-light, #6c757d); /* Use light text color variable or default */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+}
+
+/* Styles for the artist list actions container */
+.artist-list-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Consistent gap */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+

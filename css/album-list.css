@@ -1,0 +1,266 @@
+/* css/album-list.css */
+
+/* --- Album List View Styles --- */
+
+/* Styles for the album list view container */
+#albumListView {
+    /* Inherits padding/margin from main-content-section */
+    padding: 0 1.5rem 1.5rem; /* Consistent side padding */
+    /* Ensure overflow-y is handled by main-scroll */
+}
+
+/* Styles for the Bootstrap grid row within the album list view */
+#albumListView .row {
+    /* Bootstrap grid classes handle most layout */
+    /* g-3 class handles gap */
+}
+
+/* Styles for the Bootstrap grid columns within the album list view */
+#albumListView .col {
+    /* Bootstrap grid classes handle width */
+}
+
+/* Styles for individual album media cards within the grid */
+/* These should largely be handled by the existing media-cards.css */
+#albumListView .media-card {
+    /* Ensure width, text-center, etc. are handled */
+    /* Adjust margin/padding if needed relative to the column */
+}
+
+/* Styles for the image container within album media cards */
+#albumListView .media-card .media-img {
+    /* Ensure rounded (square) is handled by Bootstrap class */
+    /* No rounded-circle here */
+}
+
+/* Styles for the image itself within album media cards */
+#albumListView .media-card .media-img img {
+     /* Ensure img-fluid, object-fit-cover are handled by Bootstrap/media-cards.css */
+}
+
+/* Styles for the title and subtitle below the image */
+#albumListView .media-card .media-title,
+#albumListView .media-card .media-subtitle {
+    /* Styles should be in media-cards.css */
+}
+
+/* If you want to add a play overlay on hover, add styles here */
+/*
+#albumListView .media-card .play-overlay {
+    ... (styles similar to play overlay in media-cards.css) ...
+}
+*/
+
+
+/* --- Album Detail View Styles --- */
+
+/* Styles for the album detail view container */
+#albumDetailView {
+    /* Inherits padding/margin from main-content-section */
+}
+
+/* Styles for the album header section */
+.album-header {
+    /* Use a subtle background or gradient consistent with other detail views */
+    padding: 2rem 1.5rem; /* Adjust padding as needed */
+    align-items: center; /* Ensure content is vertically aligned */
+    margin-bottom: 1.5rem; /* Add margin below header */
+}
+
+/* Styles for the back button in the album header */
+.album-header .back-to-album-list {
+    /* Consistent with other back buttons */
+    color: var(--text-color, #333) !important; /* Ensure color matches theme */
+}
+
+/* Styles for the album cover in detail view */
+.album-cover-large {
+    width: 150px; /* Consistent size with artist photo */
+    height: 150px; /* Consistent size with artist photo */
+    object-fit: cover;
+    /* rounded class from Bootstrap handles the shape */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Added shadow similar to playlist/artist cover */
+}
+
+/* Styles for the album info container */
+.album-info {
+    /* flex-grow-1 class in HTML handles the expansion */
+}
+
+/* Styles for the album type (e.g., "Album") */
+.album-type {
+    font-size: 0.9rem;
+    color: var(--text-color-light, #6c757d);
+    margin-bottom: 0.25rem;
+}
+
+/* Styles for the album name in detail view */
+.album-name {
+    font-size: 2.5rem; /* Larger font size for main title */
+    font-weight: 700; /* Bold font weight */
+    color: var(--text-color, #333); /* Use text color variable or default */
+    margin-bottom: 0.5rem; /* Adjust margin */
+}
+
+/* Styles for the album artist/year/count info */
+.album-artist {
+    font-size: 1rem; /* Adjust font size */
+    color: var(--text-color-light, #6c757d); /* Use light text color variable or default */
+    margin-bottom: 1.5rem; /* Adjust margin */
+}
+
+/* Styles for the Play Album button - Matching Artist Play Button Style */
+.btn-play-album {
+    background-color: #8A7EBE; /* Warna ungu primary dari tema */
+    color: #FFFFFF; /* Teks putih */
+    border: none; /* No border */
+    padding: 0.75rem 2rem; /* Adjusted padding for a button feel */
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    font-size: 1.2rem; /* Adjust font size */
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Add transition */
+    border-radius: 50rem; /* Use a large value for rounded-pill effect */
+}
+
+.btn-play-album:hover {
+    background-color: #7161a5; /* Warna ungu primary lebih gelap saat hover */
+    color: #FFFFFF; /* Keep text white on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Specific style for the play icon inside the Album Play button */
+.btn-play-album i {
+    font-size: 1.5rem; /* Adjust icon size within button */
+    margin-right: 0.5rem; /* Space between icon and text */
+    color: #FFFFFF; /* Ensure icon color is white */
+}
+
+
+/* Styles for the album song list section */
+.album-song-list {
+    padding: 0 1.5rem 1.5rem; /* Adjust padding to match header side padding */
+}
+
+/* Styles for the song list header within album detail */
+.album-song-list .d-flex.text-muted.small.mb-2.border-bottom.pb-2 {
+    align-items: center;
+    font-size: 0.9rem; /* Consistent small font size */
+    color: var(--text-color-light, #6c757d) !important; /* Use light text color */
+    border-bottom-color: rgba(0,0,0,0.1) !important; /* Lighter border */
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem !important;
+}
+
+/* Styles for individual song items within album detail */
+/* These should be consistent with song-item styles used elsewhere */
+.album-song-list .song-item {
+    /* Use styles from global song-item if defined, or define here */
+    /* Should be consistent with .song-item in playlist-detail.css or artist-detail.css */
+    background-color: transparent;
+    border-radius: 0.6rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.album-song-list .song-item:hover {
+     background-color: #e8e8ed; /* Consistent hover color */
+}
+
+.album-song-list .song-item.playing {
+     background-color: #E7DCFF; /* Consistent playing color */
+}
+
+.album-song-list .song-item .song-item-cover {
+     width: 40px; /* Consistent size */
+     height: 40px; /* Consistent size */
+     object-fit: cover;
+     flex-shrink: 0;
+     background-color: #D9D9D9;
+     border-radius: 4px;
+}
+
+.album-song-list .song-item .song-item-details {
+     overflow: hidden;
+     flex-grow: 1;
+}
+
+.album-song-list .song-item .song-item-title {
+     font-size: 0.95rem;
+     font-weight: 500;
+     color: var(--text-color, #333);
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     margin-bottom: 0;
+}
+
+.album-song-list .song-item .song-item-artist {
+     font-size: 0.8rem;
+     color: var(--text-color-light, #6c757d);
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     margin-bottom: 0;
+}
+
+.album-song-list .song-item.playing .song-item-artist {
+     color: #555;
+}
+
+.album-song-list .song-item .song-duration {
+     font-size: 0.9rem;
+     color: var(--text-color-light, #6c757d);
+     white-space: nowrap;
+}
+
+.album-song-list .song-item.playing .song-duration {
+     color: #555;
+}
+
+.album-song-list .song-item .song-item-actions {
+     display: flex;
+     align-items: center;
+     gap: 0.5rem;
+     margin-left: auto;
+     flex-shrink: 0;
+}
+
+.album-song-list .song-item .like-btn {
+     background-color: transparent;
+     border: none;
+     padding: 5px;
+     cursor: pointer;
+     transition: transform 0.2s ease, background-color 0.2s ease;
+     border-radius: 50%;
+     color: var(--text-color-light, #6c757d);
+}
+
+.album-song-list .song-item .like-btn:hover {
+     transform: scale(1.1);
+     background-color: rgba(0,0,0, 0.05);
+     color: var(--text-color, #333);
+}
+
+.album-song-list .song-item .like-btn i.fas {
+     color: var(--bs-danger, #dc3545);
+}
+
+.album-song-list .song-item .song-item-listening-icon {
+     width: 20px;
+     height: 20px;
+     display: none;
+     vertical-align: middle;
+     color: var(--bs-primary, #0d6efd);
+     margin-left: 0;
+}
+
+.album-song-list .song-item.playing .song-item-listening-icon {
+     display: inline-block;
+}
+
+

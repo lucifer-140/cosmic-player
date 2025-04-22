@@ -1,0 +1,100 @@
+/* === NOTIFICATION VIEW STYLES === */
+
+.notification-header .section-title {
+    /* Gaya dari layout.css/utilities.css untuk section-title sudah cocok */
+    /* font-size: 1.5rem; */ /* Sesuaikan jika perlu */
+    /* color: inherit; */ /* Akan mengikuti warna teks utama */
+}
+
+.notification-header p {
+    font-size: 0.9rem;
+    color: #6B7280; /* Menggunakan warna abu-abu muted dari tema */
+}
+
+.notification-item {
+    /* Menggunakan warna background yang senada dengan header/footer modal */
+    background-color: #E4E5EE; /* Warna abu-abu muda dari desain tema */
+    border-radius: 0.75rem; /* Tetap sedikit bulat */
+    /* Padding disesuaikan agar tidak terlalu besar */
+    padding: 1rem 1.25rem; /* Padding dalam item, disesuaikan */
+    margin-bottom: 1rem; /* Jarak antar item */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Tetap gunakan shadow halus */
+    transition: box-shadow 0.2s ease;
+    color: #34364C; /* Warna teks utama agar konsisten */
+}
+
+.notification-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07); /* Shadow sedikit lebih kuat saat hover */
+}
+
+.notification-user-icon,
+.notification-song-cover {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 0.5rem; /* Beri sedikit radius pada cover/ikon */
+    background-color: #d1d3e0; /* Placeholder bg senada tema */
+}
+
+/* Khusus ikon user di notifikasi invite, bisa tetap bulat */
+.notification-item--invite .notification-user-icon {
+    border-radius: 50%; /* Bulatkan ikon user pada notifikasi invite */
+}
+
+
+.notification-text .fw-semibold {
+    /* Menggunakan warna teks gelap utama dari tema */
+    color: #34364C; /* Warna teks gelap utama */
+    font-size: 0.95rem; /* Tetap ukuran yang bagus */
+    line-height: 1.4;
+}
+
+.notification-text p {
+    margin-bottom: 0; /* Pastikan tidak ada margin bawah default pada paragraf dalam teks */
+}
+
+
+.notification-meta {
+    font-size: 0.8rem;
+    color: #6B7280; /* Menggunakan warna abu-abu muted untuk meta info */
+}
+
+.notification-actions .btn-sm {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 0.5rem; /* Sesuaikan radius tombol agar konsisten (0.5rem seperti modal) */
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Tombol Accept & Play Now */
+.btn-accept,
+.btn-play-now {
+    background-color: #8A7EBE; /* Warna ungu primary dari tema */
+    color: #FFFFFF; /* Teks putih */
+    border: none;
+}
+
+.btn-accept:hover,
+.btn-play-now:hover {
+    background-color: #7161a5; /* Warna ungu primary lebih gelap saat hover */
+    color: #FFFFFF;
+}
+
+/* Tombol Reject */
+.btn-reject {
+    background-color: #d1d3e0; /* Warna abu-abu secondary dari tema */
+    color: #34364C; /* Warna teks gelap utama */
+    border: none;
+}
+
+.btn-reject:hover {
+    background-color: #babbc7; /* Warna abu-abu secondary lebih gelap saat hover */
+    color: #34364C;
+}
+.user__notifications-toggle:active {
+    transform: scale(0.9);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+}

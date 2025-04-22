@@ -1,5 +1,5 @@
 .sidebar__logo {
-    max-width: 160px;
+    max-width: 120px;
     max-height: 160px;
     width: auto;
     height: auto;
@@ -61,14 +61,18 @@
     border-radius: 0.5rem;
     padding: 0.75rem 1rem;
     margin-bottom: 0.5rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .list-item-box:hover {
     background-color: #8A7EBE;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
-}
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(138, 126, 190, 0.2);
+  }
+
+  .list-item-box:active {
+    transform: translateY(0) scale(1.00);
+  }
 
 .list-item-box:hover a {
     color: white !important;
@@ -102,4 +106,23 @@ ul.list-unstyled li a {
     display: none;
     width: 0;
     height: 0;
+}
+
+
+.playlist-link {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .playlist-link:hover .playlist__name {
+    transform: translateX(5px);
+  }
+  
+  .playlist__name, .playlist__creator {
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+.add-friend-btn-sidebar:active{
+    transform: scale(0.9);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
 }

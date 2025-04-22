@@ -1,9 +1,147 @@
-.friends__box {
-    background-color: #F0F0F5;
+/* web1/css/friends.css */
+
+/* == Variabel Warna == */
+:root {
+    /* Warna untuk bagian Jam (header ungu) */
+    --jam-purple: #6a0dad; /* Ungu utama untuk Jam */
+    --jam-purple-dark: #4a0a7a; /* Ungu lebih gelap untuk hover Jam */
+    --jam-light-bg: #f8f0ff; /* Latar belakang light lavender sidebar */
+    --jam-text-dark: #333; /* Teks gelap */
+    --jam-text-light: #ffffff; /* Teks putih */
+
+    /* Warna untuk tombol Start Flow (bisa disamakan jika mau) */
+    --start-flow-purple: #8A7EBE; /* Ungu untuk tombol Start Flow */
+    --start-flow-purple-dark: #7161a5; /* Ungu lebih gelap untuk hover Start Flow */
+}
+
+/* == Gaya Sidebar Keseluruhan (jika ingin diatur di sini) == */
+.custom-sidebar {
+    background-color: var(--jam-light-bg);
+    padding: 15px;
+    color: var(--jam-text-dark);
+    height: 100vh; /* Contoh: tinggi penuh */
+    overflow-y: auto; /* Agar bisa di-scroll jika konten panjang */
+}
+
+
+/* == Gaya Header ABC's Jam == */
+.jam-header {
+    margin-bottom: 1.5rem; /* Sesuaikan margin bawah jika perlu (sebelumnya mb-4) */
+}
+
+.jam-header .back-arrow {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--jam-text-dark);
+    /* Tambahkan style lain jika perlu */
+}
+
+.jam-header .section-title {
+    font-weight: bold;
+    color: var(--jam-text-dark);
+    margin-bottom: 0; /* Hapus margin bawah default dari h3 */
+}
+
+.participants-display {
+    background-color: var(--jam-purple);
+    border-radius: 20px;
+    padding: 8px 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--jam-text-light);
+    margin-bottom: 1rem; /* Sesuaikan margin bawah jika perlu (sebelumnya mb-3) */
+}
+
+.participant-icon,
+.add-participant-icon {
+    font-size: 1.1rem;
+    display: inline-block;
+}
+
+.add-participant-icon {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Pastikan container memiliki display: flex */
+.flow-actions {
+    display: flex;
+    gap: 0.5rem; /* Sesuaikan jarak jika perlu (gap-2 = 0.5rem) */
+  }
+  
+  /* Terapkan flex-grow ke kedua tombol */
+  .flow-actions .btn-jam {
+    flex-grow: 1;
+    /* Pastikan tidak ada width spesifik yang menghalangi */
+    width: 112px; /* Opsional, memastikan tidak ada width fixed */
+    /* Properti lain dari .btn-jam tetap berlaku */
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 500;
     border-radius: 0.5rem;
-    padding: 0.75rem;
+    border: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+    text-align: center; /* Pastikan teks tetap di tengah */
+  }
+  
+  /* Aturan spesifik untuk .btn-jam-invite dan .btn-jam-leave tetap sama */
+  .btn-jam-invite {
+    background-color: #8A7EBE;
+    color: #FFFFFF;
+  }
+  .btn-jam-invite:hover {
+    background-color: #7161a5;
+    color: #FFFFFF;
+  }
+  .btn-jam-leave {
+    background-color: #d1d3e0;
+    color: #34364C;
+  }
+  .btn-jam-leave:hover {
+    background-color: #babbc7;
+    color: #34364C;
+  }
+
+/* == Gaya Konten di dalam Flow Section (Now Playing, Next Music) == */
+#flowSection .section-title-content { /* Lebih spesifik jika diperlukan */
+    font-weight: bold;
+    color: var(--jam-text-dark);
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem; /* Sesuaikan margin (sebelumnya mb-1) */
+}
+
+#flowSection .song-title { /* Lebih spesifik jika diperlukan */
+    color: var(--jam-text-dark);
+}
+
+#flowSection .artist-name,
+#flowSection .song-duration { /* Lebih spesifik jika diperlukan */
+    color: #6c757d;
+}
+
+
+/* == Gaya Friend Activity == */
+.friends__box {
+    background-color: #F0F0F5; /* Warna berbeda dari background sidebar */
+    border-radius: 0.5rem;
+    padding: 0.75rem 0.5rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    margin-bottom: 1rem;
+    margin-bottom: 5px;
+    overflow: hidden;
+    /* Pastikan display: flex ada di elemen .friends__box di HTML (sudah ada) */
+    /* align-items: center; (sudah ada di HTML) */
+}
+.friends__box:hover {
+    background-color: #f8f8f8;
 }
 
 .friends__img img {
@@ -11,19 +149,77 @@
     height: 48px;
     border-radius: 50%;
     object-fit: cover;
+    flex-shrink: 0;
+    /* margin-right: 0.5rem; (me-1 di HTML sudah cukup) */
+}
+
+.friends__text {
+    overflow: hidden;
+    min-width: 0; /* Penting untuk text-ellipsis di flex item */
+    flex-grow: 1; /* Agar mengambil sisa ruang */
+     /* margin-right: 0.5rem; (ms-1 pada .friends__play sudah cukup) */
+}
+
+.friends__name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block; /* Atau bisa juga flex-basis: 100% jika dalam flex column */
+    color: var(--jam-text-dark); /* Pastikan warna kontras */
+    margin-bottom: 0.1rem; /* Sedikit jarak antar nama dan aktivitas */
+}
+
+.friends__activity {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    padding-right: 2px; /* Optional padding for ellipsis */
+    color: #6c757d; /* Warna abu-abu */
 }
 
 .friends__play img {
     width: 24px;
     height: 24px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
-.friends__name {
-    font-weight: 600;
-    font-size: 0.9rem;
+/* Gaya Judul "Friend Activity" */
+#friendActivitySection .section-title { /* Lebih spesifik */
+     color: var(--jam-text-dark);
+     font-weight: bold;
+     /* Pastikan margin diatur oleh class Bootstrap mb-3 di HTML */
 }
 
-.friends__activity {
-    font-size: 0.8rem;
+
+/* Gaya tombol "Start a Flow" */
+#startFlowBtn {
+    background-color: var(--start-flow-purple); /* Menggunakan variabel */
+    color: var(--jam-text-light); /* Bisa gunakan variabel teks putih */
+    border: none;
+    border-radius: 0.375rem; /* Radius standar bootstrap, sesuaikan jika perlu */
+    padding: 0.5rem 1rem; /* Padding standar, sesuaikan jika perlu */
+    font-weight: 500;
+    width: 100%; /* (Sudah diatur oleh w-100 di HTML) */
+    transition: background-color 0.2s ease, transform 0.1s ease;
 }
+
+#startFlowBtn:hover {
+    background-color: var(--start-flow-purple-dark); /* Menggunakan variabel */
+    color: var(--jam-text-light);
+}
+
+#startFlowBtn:active {
+    background-color: var(--start-flow-purple-dark); /* Menggunakan variabel */
+    color: #DDDDDD; /* Mungkin sedikit bedakan warna teks saat aktif */
+    transform: scale(0.98); /* Sedikit lebih halus dari 0.95 */
+}
+user__friends-toggle:active {
+    transform: scale(0.9); /* Menggunakan 0.9 atau 0.95 lebih umum untuk efek tekan */
+    transition: transform 0.05s ease; /* Transisi singkat agar tidak terlalu kaku */
+}
+
